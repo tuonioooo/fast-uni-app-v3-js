@@ -1,0 +1,8 @@
+node_modules/
+unpackage/
+uni_modules/
+.husky/
+pnpm-lock.yaml
+*.md
+dist/
+build/

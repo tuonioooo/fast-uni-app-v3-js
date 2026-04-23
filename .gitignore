@@ -2,3 +2,10 @@ node_modules/
 unpackage/
 .hbuilderx/
 .DS_Store
+.idea/
+.vscode/
+.husky/_/
+coverage/
+dist/
+*.log
+.env.local

@@ -1,10 +1,15 @@
 {
   "name": "fast-uni-app-v3-js",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --ext .js,.vue --ignore-pattern .eslintignore",
+    "lint:fix": "eslint . --ext .js,.vue --ignore-pattern .eslintignore --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "prepare": "husky"
   },
   "dependencies": {
     "@climblee/uv-ui": "^1.1.20",
@@ -13,10 +18,27 @@
     "pinia": "2.0.36"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",         
-    "mockjs": "^1.1.0",                 
-    "vite-plugin-mock": "^3.0.2",        
-    "postcss-px-to-viewport": "^1.1.1"
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^10.2.1",
+    "eslint-plugin-vue": "^10.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "mockjs": "^1.1.0",
+    "postcss-px-to-viewport": "^1.1.1",
+    "prettier": "^3.5.3",
+    "vite-plugin-mock": "^3.0.2",
+    "vue-eslint-parser": "^10.4.0"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix --ignore-pattern .eslintignore",
+      "prettier --write"
+    ],
+    "*.{json,md,scss,css,html}": [
+      "prettier --write"
+    ]
   },
   "keywords": [],
   "author": "",
