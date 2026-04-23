@@ -1,0 +1,536 @@
+/**
+ * @description nvue页面公共scss 汇总包含背景颜色、文字颜色、边线颜色、flex、grid布局、文字溢出隐藏、位置、剪切, 动态变量设置scss：（宽、高、字号、行间距、边距、透明度、圆角）
+ * 调用方式  全局引入
+ */
+
+/* 宽度 高度 */
+$w: 0;
+@while $w <= 200 {
+  @if $w <= 100 {
+    @if $w == 100 {
+      .jasper-ww {
+        width: 100vw;
+      }
+      .jasper-hh {
+        height: 100vh;
+      }
+    }
+  }
+  .jasper-w#{$w} {
+    width: $w*2rpx;
+  }
+  .jasper-h#{$w} {
+    height: $w*2rpx;
+  }
+  @if $w < 10 {
+    $w: $w + 1 ;
+  } @else {
+    $w: $w + 5 ;
+  }
+}
+
+
+/* 字号 */
+@for $fz from 12 through 50 {
+  .jasper-fz#{$fz} {
+    font-size: $fz*2rpx;
+  }
+}
+
+/* 行间距 */
+@for $lh from 1 through 11 {
+  .jasper-lh#{$lh} {
+    line-height: 1 + ($lh - 1) * 0.1;
+  }
+}
+
+@for $lh from 12 through 50 {
+  .jasper-lh#{$lh} {
+    line-height: $lh*2rpx;
+  }
+}
+
+
+/* 边距 - 覆盖顺序是小的尺寸覆盖大的尺寸 少的方向覆盖多的方向 */
+$s: 200;
+@while $s >= 0 {
+  .jasper-pd#{$s} {
+    padding: $s*2rpx;
+  }
+  .jasper-m#{$s} {
+    margin: $s*2rpx;
+  }
+  @if $s == 15 {
+    .jasper-pd {
+      padding: 30rpx;
+    }
+    .jasper-m {
+      margin: 30rpx;
+    }
+  }
+  @if $s <= 10 {
+    $s: $s - 1 ;
+  } @else {
+    $s: $s - 5 ;
+  }
+}
+
+$s: 200;
+@while $s >= 0 {
+  .jasper-ptb#{$s} {
+    padding-top: $s*2rpx;
+    padding-bottom: $s*2rpx;
+  }
+  .jasper-plr#{$s} {
+    padding-left: $s*2rpx;
+    padding-right: $s*2rpx;
+  }
+  .jasper-mtb#{$s} {
+    margin-top: $s*2rpx;
+    margin-bottom: $s*2rpx;
+  }
+  .jasper-mlr#{$s} {
+    margin-left: $s*2rpx;
+    margin-right: $s*2rpx;
+  }
+  @if $s == 15 {
+    .jasper-ptb {
+      padding-top: 30rpx;
+      padding-bottom: 30rpx;
+    }
+    .jasper-plr {
+      padding-left: 30rpx;
+      padding-right: 30rpx;
+    }
+
+    .jasper-mlr {
+      margin-left: 30rpx;
+      margin-right: 30rpx;
+    }
+    .jasper-mtb {
+      margin-top: 30rpx;
+      margin-bottom: 30rpx;
+    }
+  }
+  @if $s <= 10 {
+    $s: $s - 1 ;
+  } @else {
+    $s: $s - 5 ;
+  }
+}
+
+$s: 200;
+@while $s >= 0 {
+  .jasper-pl#{$s} {
+    padding-left: $s*2rpx;
+  }
+  .jasper-pr#{$s} {
+    padding-right: $s*2rpx;
+  }
+  .jasper-pt#{$s} {
+    padding-top: $s*2rpx;
+  }
+  .jasper-pb#{$s} {
+    padding-bottom: $s*2rpx;
+  }
+  .jasper-ml#{$s} {
+    margin-left: $s*2rpx;
+  }
+  .jasper-mr#{$s} {
+    margin-right: $s*2rpx;
+  }
+  .jasper-mt#{$s} {
+    margin-top: $s*2rpx;
+  }
+  .jasper-mb#{$s} {
+    margin-bottom: $s*2rpx;
+  }
+  @if $s == 15 {
+    .jasper-pt {
+      padding-top: 30rpx;
+    }
+    .jasper-pb {
+      padding-bottom: 30rpx;
+    }
+    .jasper-pl {
+      padding-left: 30rpx;
+    }
+    .jasper-pr {
+      padding-right: 30rpx;
+    }
+    .jasper-mt {
+      margin-top: 30rpx;
+    }
+    .jasper-mr {
+      margin-right: 30rpx;
+    }
+    .jasper-ml {
+      margin-left: 30rpx;
+    }
+    .jasper-mb {
+      margin-bottom: 30rpx;
+    }
+  }
+  @if $s <= 10 {
+    $s: $s - 1 ;
+  } @else {
+    $s: $s - 5 ;
+  }
+}
+
+/* 文字溢出隐藏 */
+@for $lines from 1 through 10 {
+  .jasper-clip#{$lines} {
+    text-overflow: ellipsis;
+    lines: $lines;
+    overflow: hidden;
+    flex: 1;
+  }
+  .jasper-cut#{$lines} {
+    text-overflow: ellipsis;
+    lines: $lines;
+    overflow: hidden;
+    flex: 1;
+  }
+}
+
+.jasper-cut {
+  text-overflow: clip;
+}
+
+/* -- flex布局 start-- */
+.jasper-flex, .jasper-grid, .jasper-grid-sm {
+  display: flex;
+  flex-direction: row; // 默认值 横向
+  justify-content: flex-start; // 水平方向默认值
+  align-items: stretch; // 垂直方向默认值
+}
+
+.jasper-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.jasper-align-items-start {
+  align-items: flex-start;
+}
+
+.jasper-align-items-center {
+  align-items: center !important;
+}
+
+.jasper-align-items-end {
+  align-items: flex-end !important;
+}
+
+.jasper-align-items-stretch { // 垂直方向铺满 默认值。元素被拉伸以适应容器。
+  align-items: stretch;
+}
+
+.jasper-flex-direction-row {
+  flex-direction: row !important;
+}
+
+.jasper-flex-direction-column {
+  flex-direction: column !important;
+}
+
+.jasper-justify-content-start {
+  justify-content: flex-start;
+}
+
+.jasper-justify-content-center {
+  justify-content: center;
+}
+
+.jasper-justify-content-end {
+  justify-content: flex-end;
+}
+
+.jasper-justify-content-around {
+  justify-content: space-around;
+}
+
+.jasper-justify-content-between {
+  justify-content: space-between;
+}
+
+.jasper-cover {
+  flex: 1;
+}
+
+
+/* flex子元素空间分配 */
+@for $i from 0 to 12 {
+  .jasper-flex-#{$i} {
+    flex: $i;
+  }
+}
+
+/* -- flex布局 end-- */
+
+
+/* 定位布局 */
+.jasper-relative {
+  position: relative;
+}
+
+.jasper-abs {
+  position: absolute;
+}
+
+.jasper-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+@for $i from 0 through 20 {
+  .jasper-z-index-#{$i} {
+    z-index: $i;
+  }
+}
+
+/* 圆角 start */
+
+.jasper-radius,.jasper-rds{
+  border-radius: 100%!important;
+}
+
+$r:0;
+@while $r <= 50{
+  .jasper-rds#{$r},.jasper-radius#{$r}{
+    border-radius:$r*2rpx!important;
+  }
+  $r : $r + 1;
+}
+
+.jasper-rds-tl{
+  border-top-left-radius:100%!important;
+}
+.jasper-rds-tr{
+  border-top-right-radius: 100%!important;
+}
+.jasper-rds-bl{
+  border-bottom-left-radius: 100%!important;
+}
+.jasper-rds-br{
+  border-bottom-right-radius: 100%!important;
+}
+.jasper-rds-l{
+  border-top-left-radius:100%!important;
+  border-bottom-left-radius: 100%!important;
+}
+.jasper-rds-r{
+  border-top-right-radius: 100%!important;
+  border-bottom-right-radius: 100%!important;
+}
+.jasper-rds-t{
+  border-top-left-radius:100%!important;
+  border-top-right-radius: 100%!important;
+}
+.jasper-rds-b{
+  border-bottom-right-radius: 100%!important;
+  border-bottom-left-radius: 100%!important;
+}
+
+$r:0;
+@while $r <= 50{
+  .jasper-rds-tl#{$r}{
+    border-top-left-radius: $r*2rpx!important;
+  }
+  .jasper-rds-tr#{$r}{
+    border-top-right-radius: $r*2rpx!important;
+  }
+  .jasper-rds-bl#{$r}{
+    border-bottom-left-radius: $r*2rpx!important;
+  }
+  .jasper-rds-br#{$r}{
+    border-bottom-right-radius: $r*2rpx!important;
+  }
+  .jasper-rds-l#{$r}{
+    border-top-left-radius:$r*2rpx!important;
+    border-bottom-left-radius: $r*2rpx!important;
+  }
+  .jasper-rds-r#{$r}{
+    border-top-right-radius: $r*2rpx!important;
+    border-bottom-right-radius: $r*2rpx!important;
+  }
+  .jasper-rds-t#{$r}{
+    border-top-left-radius:$r*2rpx!important;
+    border-top-right-radius: $r*2rpx!important;
+  }
+  .jasper-rds-b#{$r}{
+    border-bottom-right-radius: $r*2rpx!important;
+    border-bottom-left-radius: $r*2rpx!important;
+  }
+  $r : $r + 1;
+}
+
+/* 圆角 end */
+
+
+
+$p: 200;
+@while $p > 0 {
+  .jasper-square#{$p} {
+    padding-top: $p*1%;
+    position: relative;
+  }
+  @if $p == 100 {
+    .jasper-square {
+      padding-top: 100%;
+      position: relative;
+    }
+  }
+  $p: $p - 5 ;
+}
+
+.jasper-square-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* 正方形&长方形 end */
+
+/* 遮罩层 start */
+.jasper-cover-top{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.02));
+}
+
+.jasper-cover-bottom{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.3));
+}
+/* 遮罩层 end */
+
+
+/* 透明度 - start */
+@for $op from 0 through 10 {
+  .jasper-op#{$op}{
+    opacity: $op * 0.1!important;
+  }
+  .jasper-bgc-p#{$op}{
+    background-color: rgba(#000,$op*0.1);
+  }
+  @if $op == 5 {
+    .jasper-bgc-p{
+      background-color: rgba(#000,0.5);
+    }
+  }
+}
+
+/* 透明度 - end */
+
+/* -- 位置 start -- */
+.jasper-text-center {
+  text-align: center !important;
+}
+
+.jasper-text-left {
+  text-align: left !important;
+}
+
+.jasper-text-right {
+  text-align: right !important;
+}
+
+.jasper-text-bold {
+  font-weight: bold;
+}
+
+.jasper-text-normal {
+  font-weight: normal;
+}
+
+.jasper-no-break {
+  text-overflow: ellipsis; /* 超出显示省略号 */
+  overflow: hidden; /* 隐藏超出的部分 */
+  display: flex; /* 使用 flex 布局，确保一行展示 */
+}
+
+/* -- 位置 end -- */
+
+.jasper-hide {
+  transform: translateY(-200%);
+  opacity: 0;
+}
+
+/* 边线(实线、虚线) */
+.jasper-bd {
+  border: 1px solid $jasper-border-1;
+}
+
+.jasper-bt {
+  border-top: 1px solid $jasper-border-1;
+}
+
+.jasper-bb {
+  border-bottom: 1px solid $jasper-border-1;
+}
+
+.jasper-bl {
+  border-left: 1px solid $jasper-border-1;
+}
+
+.jasper-br {
+  border-right: 1px solid $jasper-border-1;
+}
+
+$unc: 2;
+@while $unc <= 10 {
+  .jasper-bd#{$unc} {
+    border: #{$unc}px solid $jasper-border-1;
+  }
+  .jasper-bt#{$unc} {
+    border-top: #{$unc}px solid $jasper-border-1;
+  }
+  .jasper-bb#{$unc} {
+    border-bottom: #{$unc}px solid $jasper-border-1;
+  }
+  .jasper-bl#{$unc} {
+    border-left: #{$unc}px solid $jasper-border-1;
+  }
+  .jasper-br#{$unc} {
+    border-right: #{$unc}px solid $jasper-border-1;
+  }
+  $unc: $unc + 1 ;
+}
+
+.jasper-bd-dashed {
+  border-style: dashed;
+}
+
+.jasper-bl-dashed {
+  border-left-style: dashed;
+}
+
+.jasper-br-dashed {
+  border-right-style: dashed;
+}
+
+.jasper-bt-dashed {
+  border-top-style: dashed;
+}
+
+.jasper-bb-dashed {
+  border-bottom-style: dashed;
+}
+
+
+@for $scale from 1 through 20 {
+  .jasper-scale#{$scale} {
+    transform: scale(0.1 * $scale);
+  }
+}
+
+$deg: -180;
+@while $deg <= 180 {
+  .jasper-rotate#{$deg} {
+    transform: rotate($deg * 1deg);
+  }
+  $deg: $deg + 15 ;
+}

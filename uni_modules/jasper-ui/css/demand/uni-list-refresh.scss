@@ -1,0 +1,74 @@
+/**
+ * @description uni-app官方list组件中的样式扩展，仅支持nvue页面
+ * 调用方式 按需引入
+ */
+
+/* #ifdef APP-NVUE */
+.page{
+  flex: 1;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.refresh {
+  justify-content: center;
+}
+
+.refresh-view {
+  width: 750rpx;
+  height: 128rpx;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-icon {
+  width: 64rpx;
+  height: 64rpx;
+  transition-duration: .5s;
+  transition-property: transform;
+  transform: rotate(0deg);
+  transform-origin: 30rpx 30rpx;
+}
+
+.refresh-icon-active {
+  transform: rotate(180deg);
+}
+
+.loading-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 10rpx;
+  color: gray;
+}
+
+.loading-text {
+  margin-left: 4rpx;
+  font-size: 32rpx;
+  color: #999999;
+}
+
+.loading-more {
+  align-items: center;
+  justify-content: center;
+  padding-top: 28rpx;
+  padding-bottom: 28rpx;
+  text-align: center;
+}
+
+.loading-more-text {
+  font-size: 28rpx;
+  color: gray;
+  //或 color: #777777;
+}
+.list-scroll-v {
+	flex: 1;
+	flex-direction: column;
+	width: 750rpx;
+}
+
+/* #endif */

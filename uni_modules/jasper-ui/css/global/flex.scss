@@ -1,0 +1,117 @@
+/**
+ * @description grid布局、flex布局 仅支持H5、小程序，不支持nvue页面
+ * 调用方式  全局引入
+ */
+
+/* -- flex布局 start-- */
+.jasper-flex, .jasper-grid, .jasper-grid-sm {
+  display: flex;
+  flex-direction: row; // 默认值 横向
+  justify-content: flex-start; // 水平方向默认值
+  align-items: stretch; // 垂直方向默认值
+}
+
+/*
+  防止元素伸缩：设置 flex: none; 时，元素不会根据其父容器的空间进行自动扩展或收缩。它的宽度和高度由内容或显式设置的尺寸决定，不会受到 flex-grow 和 flex-shrink 的影响。
+  取消弹性分配：flex 布局的默认行为通常会让元素根据容器的空间进行动态调整，但 flex: none; 强制取消这一弹性分配，使元素像普通的块级或内联元素一样呈现固定的宽高。
+  固定宽高：当使用 flex: none; 时，元素的大小将完全取决于自身内容或其他样式规则，而不会根据容器的剩余空间来改变。
+ */
+.jasper-fixed-flex-item {
+  flex: none;
+}
+
+.jasper-grid, .jasper-grid-sm{
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.jasper-grid-sm{
+  margin:0 -10rpx;
+  width: auto;
+  >.item,>image,>view,>navigator,>text,>button{
+    padding: 0 10rpx;
+    margin-bottom: 20rpx;
+  }
+}
+
+.jasper-inline-flex {
+  display: inline-flex;
+}
+.jasper-flex-wrap {
+  flex-wrap: wrap;
+}
+.jasper-align-items-start {
+  align-items: flex-start;
+}
+.jasper-align-items-center {
+  align-items: center !important;
+}
+.jasper-align-items-end {
+  align-items: flex-end !important;
+}
+.jasper-align-items-stretch { // 垂直方向铺满 默认值。元素被拉伸以适应容器。
+  align-items: stretch;
+}
+.jasper-flex-direction-row {
+  flex-direction: row !important;
+}
+.jasper-flex-direction-column {
+  flex-direction: column !important;
+}
+.jasper-justify-content-start {
+  justify-content: flex-start;
+}
+.jasper-justify-content-center {
+  justify-content: center;
+}
+.jasper-justify-content-end {
+  justify-content: flex-end;
+}
+.jasper-justify-content-around {
+  justify-content: space-around;
+}
+.jasper-justify-content-between {
+  justify-content: space-between;
+}
+.jasper-cover {
+  flex: auto;
+}
+.jasper-flex-shrink {
+  flex-shrink: 1;
+}
+.jasper-flex-grow {
+  flex-grow: 1;
+}
+/* flex子元素空间分配 */
+@for $i from 0 to 12 {
+  .jasper-flex-#{$i} {
+    flex: $i;
+  }
+}
+
+/* flex伸缩基准值 */
+.jasper-flex-basic-xs {
+  flex-basis: 20%;
+}
+
+.jasper-flex-basic-sm {
+  flex-basis: 40%;
+}
+
+.jasper-flex-basic-md {
+  flex-basis: 50%;
+}
+
+.jasper-flex-basic-lg {
+  flex-basis: 60%;
+}
+
+.jasper-flex-basic-xl {
+  flex-basis: 80%;
+}
+
+.jasper-flex-basic-full {
+  flex-basis: 100%;
+}
+
+/* -- flex布局 end-- */

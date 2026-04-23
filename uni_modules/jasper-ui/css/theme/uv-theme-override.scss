@@ -1,0 +1,44 @@
+// 此文件为uvUI的主题变量，这些变量目前只能通过uni.scss引入才有效，另外由于
+// uni.scss中引入的样式会同时混入到全局样式文件和单独每一个页面的样式中，造成微信程序包太大，
+// 故uni.scss只建议放scss变量名相关样式，其他的样式可以通过main.js或者App.vue引入
+// 此文件是为了统一主题，单独覆盖了uV默认主题
+
+$uv-main-color: #303133 !default;
+$uv-content-color: #606266 !default;
+$uv-tips-color: #909193 !default;
+$uv-light-color: #c0c4cc !default;
+$uv-border-color: #dadbde !default;
+$uv-bg-color: #f3f4f6 !default;
+$uv-disabled-color: #c8c9cc !default;
+
+$uv-primary: #3c9cff !default;
+$uv-primary-dark: #398ade !default;
+$uv-primary-disabled: #9acafc !default;
+$uv-primary-light: #ecf5ff !default;
+
+$uv-warning: #f9ae3d !default;
+$uv-warning-dark: #f1a532 !default;
+$uv-warning-disabled: #f9d39b !default;
+$uv-warning-light: #fdf6ec !default;
+
+$uv-success: #5ac725 !default;
+$uv-success-dark: #53c21d !default;
+$uv-success-disabled: #a9e08f !default;
+$uv-success-light: #f5fff0 !default;
+
+$uv-error: #f56c6c !default;
+$uv-error-dark: #e45656 !default;
+$uv-error-disabled: #f7b2b2 !default;
+$uv-error-light: #fef0f0 !default;
+
+$uv-info: #909399 !default;
+$uv-info-dark: #767a82 !default;
+$uv-info-disabled: #c4c6c9 !default;
+$uv-info-light: #f4f4f5 !default;
+
+@mixin flex($direction: row) {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: $direction;
+}

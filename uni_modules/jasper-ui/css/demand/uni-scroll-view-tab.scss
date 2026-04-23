@@ -1,0 +1,65 @@
+
+/**
+ * @description scroll-view 横向滚动 场景 所需css样式，兼容app-nvue、app-vue、h5、小程序
+ * 调用方式  按需引入
+ */
+
+.tabs {
+	/* #ifdef APP-NVUE */
+	flex: 1;
+	flex-direction: column;
+	/* #endif */
+	overflow: hidden;
+	background-color: #ffffff;
+}
+
+.scroll-h {
+	
+	width: 750rpx;
+	
+	/* #ifdef H5 */
+	width: 100%;
+	/* #endif */
+	
+	height: 80rpx;
+	flex-direction: row;
+	
+	/* #ifndef APP-PLUS */
+	white-space: nowrap;
+	/* #endif */
+	
+	/* 
+	设置tab下边距颜色 
+	flex-wrap: nowrap;
+	border-color: #cccccc;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	*/
+}
+
+.uni-tab-item {
+	/* #ifndef APP-NVUE */
+	display: inline-block;
+	/* #endif */
+	flex-wrap: nowrap;
+	padding-left: 34rpx;
+	padding-right: 34rpx;
+}
+
+.uni-tab-item-title {
+	color: #000;
+	font-size: 32rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap: nowrap;
+	/* #ifndef APP-PLUS */
+	white-space: nowrap;
+	/* #endif */
+}
+
+.uni-tab-item-title-active {
+	/* color: #007AFF; */
+	color: #000;
+	font-size: 36rpx;
+	font-weight: bold;
+}

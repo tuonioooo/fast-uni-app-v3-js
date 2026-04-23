@@ -1,0 +1,465 @@
+/* 引入扩展颜色 */
+@import "./color";
+
+/* 动态 行间距、边距、字号、宽度、高度、透明度、圆角 变量设置 */
+@import "./variable-style";
+
+/* fix-auto布局、grid布局、flex布局 */
+@import "./flex";
+
+/* 系统变量 */
+@import "./system";
+
+// ===========================【原生标签样式 start】=================================
+
+page{
+  //文本设置了14像素的字体大小、基于字体大小1.5倍的行高，以及一系列备选字体，以确保文本的可读性和一致性。
+  font: 14px/1.5 Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+}
+
+/* #ifdef H5 */
+body, html{
+  box-sizing: border-box;
+  user-select: auto!important;
+}
+/* #endif */
+
+div, a, img, span, page, view, navigator, image, text, input, textarea, button, form, scroll-view {
+  box-sizing: border-box !important;
+}
+
+a {
+  text-decoration: none;
+  color: $jasper-main-color;
+}
+
+form, scroll-view {
+  display: block;
+  width: 100%;
+}
+
+image {
+  will-change: transform
+}
+
+input, textarea, form {
+  width: 100%;
+  height: auto;
+  min-height: 10px;
+  display: block;
+  font-size: inherit;
+}
+
+uni-button[loading]:before {
+  margin-right: 2px;
+}
+
+uni-scroll-view {
+  box-sizing: border-box;
+}
+
+// ===========================【原生标签样式 end】=================================
+
+// ===========================【自定义样式 start】=================================
+.jasper-window-body {
+  background-color: #fff;
+  min-height: calc(100vh - var(--window-top) - 30px);
+}
+
+.jasper-box {
+  background-color: #fff;
+  color: #000;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  box-shadow: 0px 2px 9px -1px rgba($jasper-color-black, 0.4);
+  border: 1px solid $jasper-border-1;
+}
+
+/* 字母大写 */
+.jasper-upper {
+  text-transform: uppercase;
+}
+
+/* 首字母大写 */
+.jasper-cap {
+  text-transform: capitalize;
+}
+
+/* 字母小写 */
+.jasper-lower{
+  text-transform: lowercase;
+}
+
+/* 文字溢出隐藏  动态设置行数*/
+
+@for $i from 1 through 5 {
+  .jasper-clip#{$i} {
+    /* #ifndef APP-NVUE */
+    // vue下，单行和多行显示省略号需要单独处理
+    @if $i == '1' {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    } @else {
+      display: -webkit-box !important;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word; //break-word、break-all
+      -webkit-line-clamp: $i;
+      -webkit-box-orient: vertical !important;
+    }
+    /* #endif */
+  }
+}
+
+.jasper-cut {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 浮动布局 start */
+.jasper-clear {
+  &:after {
+    content: "";
+    clear: both;
+    height: 0;
+    display: block;
+    visibility: hidden;
+  }
+}
+
+.jasper-fl {
+  float: left;
+}
+
+.jasper-fr {
+  float: right;
+}
+/* 浮动布局 end */
+
+/* --- 定位布局 start --- */
+.jasper-relative {
+  position: relative;
+}
+
+.jasper-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+//底部固定
+.jasper-fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.jasper-abs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+// 带有位置修饰符的.jasper-abs样式
+.jasper-abs-top, .jasper-bottom-auto {
+  bottom: auto;
+}
+
+.jasper-abs-bottom, .jasper-top-auto {
+  top: auto;
+}
+
+.jasper-abs-left {
+  right: auto;
+}
+
+.jasper-abs-right {
+  left: auto;
+}
+
+.jasper-abs-center {
+  bottom: auto;
+  right: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.jasper-abs-top-center {
+  bottom: auto;
+  right: auto;
+  left: 50%;
+  top: 0;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.jasper-abs-bottom-center {
+  top: auto;
+  right: auto;
+  left: 50%;
+  bottom: 0;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.jasper-abs-left-center {
+  top: 50%;
+  right: auto;
+  left: 0;
+  bottom: auto;
+  transform: translate3d(0, -50%, 0);
+}
+
+.jasper-abs-right-center {
+  top: 50%;
+  left: auto;
+  right: 0;
+  bottom: auto;
+  transform: translate3d(0, -50%, 0);
+}
+
+/* --- 定位布局 end --- */
+
+
+/* 按钮样式类 */
+.jasper-btn {
+  border: none;
+  height: auto;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 24rpx;
+  font-size: inherit;
+  border-radius: 8rpx;
+  transition: opacity 0.4s;
+  transform: translateZ(0);
+
+  &.btn-block {
+    margin: 0;
+    padding: 20rpx 24rpx;
+    display: flex;
+    width: 100%;
+  }
+
+  &.btn-text {
+    vertical-align: middle;
+    border: none;
+    padding: 0 10rpx;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.disabled {
+    transform: scale(1);
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+/* 阴影 start */
+.jasper-shadow {
+  box-shadow: 6rpx 6rpx 8rpx $jasper-shadow-color;
+}
+
+.jasper-shadow-warp {
+  position: relative;
+  box-shadow: 0 0 10rpx $jasper-shadow-color;
+}
+
+.jasper-shadow-warp::before,
+.jasper-shadow-warp::after {
+  content: " ";
+  position: absolute;
+  top: 20rpx;
+  bottom: 30rpx;
+  left: 20rpx;
+  width: 50%;
+  box-shadow: 0 30rpx 20rpx $jasper-box-shadow-color;
+  transform: rotate(-3deg);
+  z-index: -1;
+}
+
+.jasper-shadow-warp::after {
+  right: 20rpx;
+  left: auto;
+  transform: rotate(3deg);
+}
+
+.jasper-shadow-blur {
+  position: relative;
+}
+
+.jasper-shadow-blur::before {
+  content: " ";
+  display: block;
+  background: inherit;
+  filter: blur(10rpx);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 10rpx;
+  left: 10rpx;
+  z-index: -1;
+  opacity: 0.4;
+  transform-origin: 0 0;
+  border-radius: inherit;
+  transform: scale(1, 1);
+}
+
+/* 阴影 end */
+
+/* 遮罩层 start */
+.jasper-cover-top{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.02));
+}
+
+.jasper-cover-bottom{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.3));
+}
+/* 遮罩层 end */
+
+.jasper-pointer {
+  cursor: pointer;
+}
+
+/* 悬浮效果 start */
+[class^="hover"], [class*=" hover"], [class^="light"], [class*=" light"] {
+  transition: opacity 0.4s;
+  cursor: pointer;
+}
+
+@for $hover from 0 through 9 {
+  .jasper-hover#{$hover} {
+    opacity: 1 !important;
+
+    &:hover {
+      opacity: $hover * 0.1 !important;
+    }
+  }
+  .jasper-light#{$hover} {
+    opacity: $hover * 0.1 !important;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
+
+/* 悬浮效果 end */
+
+//禁止选择、点击
+.jasper-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+/* -- 位置 start -- */
+.jasper-text-center{
+  text-align: center !important;
+}
+
+.jasper-text-left{
+  text-align: left !important;
+}
+
+.jasper-text-right{
+  text-align: right !important;
+}
+
+.jasper-text-justify{
+  text-align: justify; //文本两端对齐
+}
+
+.jasper-text-bold{
+  font-weight: bold;
+}
+
+.jasper-text-normal{
+  font-weight: normal;
+}
+
+.jasper-break {
+  white-space: normal;    //合并空白符、自动换行
+  word-break: break-all;  //分割文本
+}
+
+.jasper-no-break {
+  white-space: nowrap;    //合并空白符、禁止自动换行
+  word-break: keep-all;   //分割文本
+}
+
+/* -- 位置 end -- */
+
+.jasper-hide {
+  height: 0;
+  transform: translateY(-600%);
+  opacity: 0;
+}
+
+.jasper-inline-block {
+  display: inline-block;
+}
+
+.jasper-block {
+  display: block;
+  width: 100%;
+}
+
+.jasper-none {
+  display: none;
+}
+
+.jasper-visibility-hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.jasper-center-block {
+  margin: 0 auto;
+  display: block;
+}
+
+.jasper-overflow-hidden {
+  overflow: hidden;
+}
+
+.jasper-overflow-hidden-x {
+  overflow-x: hidden;
+}
+
+.jasper-overflow-hidden-y {
+  overflow-y: hidden;
+}
+
+.jasper-overflow-auto {
+  overflow: auto;
+}
+
+.jasper-overflow-auto-x {
+  overflow-x: auto;
+}
+
+.jasper-overflow-auto-y {
+  overflow-y: auto;
+}
+
+.jasper-transition {
+  transition: 0.2s;
+}
+
+// ===========================【自定义样式 end】=================================
+

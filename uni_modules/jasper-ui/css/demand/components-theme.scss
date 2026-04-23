@@ -1,0 +1,64 @@
+
+/**
+ * 用于组件的主题色  场景：当页面切换主题
+ */
+.jasper-green-theme{
+  background-color: #d1e4d0;
+  color: #152814;
+  .jasper-theme-border{
+    border-color:#152814 ;
+  }
+  .jasper-theme-bgc{
+    background-color: #C7DDC6;
+  }
+}
+.jasper-yellow-theme{
+  background-color: #f9e6be;
+  color: #422e0d;
+  .jasper-theme-border{
+    border-color:#422e0d ;
+  }
+  .jasper-theme-bgc{
+    background-color: #F1DDAB;
+  }
+}
+.jasper-white-theme{
+  background-color: #fff;
+  color: #000;
+  .jasper-theme-border{
+    border-color:#000 ;
+  }
+  .jasper-theme-bgc{
+    background-color: #F0F0F0;
+  }
+}
+.jasper-brown-theme{
+  background-color: #483c3c;
+  color: #aa9e9e;
+  .jasper-theme-border{
+    border-color:#aa9e9e ;
+  }
+  .jasper-theme-bgc{
+    background-color: #423836;
+  }
+}
+.jasper-dark-theme{
+  background-color: #3b3e47;
+  color: #9699a2;
+  .jasper-theme-border{
+    border-color:#9699a2 ;
+  }
+  .jasper-theme-bgc{
+    background-color: #373a44;
+  }
+}
+.jasper-black-theme{
+  background-color: #242424;
+  color: #8C8C8C;
+  .jasper-theme-border{
+    border-color:#8C8C8C ;
+  }
+  .jasper-theme-bgc{
+    background-color: #2b2a2a;
+  }
+}

@@ -1,0 +1,44 @@
+/**
+ * uni-app 官方的checkbox组件 uni-checkbox 改成圆角
+ * 注意：
+ * 1./deep/、>>>和::v-deep在vue 3.0会报警告：v-deep is deprecated, consult docs for better alternative 改成 :deep(selector){} 写法
+ * 2.nvue不支持样式穿透 nvue页面无法使用以下css
+ * 3.Vue2编译模式下 为了兼容小程序 请改成 “/deep/、>>>和::v-deep”的写法
+ * 调用方式  按需引入
+ */
+
+/* #ifndef APP-NVUE */
+
+/* #ifdef VUE2 */
+uni-checkbox ::v-deep .uni-checkbox-input{
+	border-radius: 50% !important;
+	color: #ffffff !important;
+	border-color: $miliqk-border-color !important;
+}
+uni-checkbox ::v-deep .uni-checkbox-input.uni-checkbox-input-checked{
+	color: $miliqk-primary !important ;
+	border-color: $miliqk-border-color !important;
+	background: $miliqk-primary !important;
+}
+uni-checkbox ::v-deep .uni-checkbox-input.uni-checkbox-input-checked:after{
+	font-size: 18px;
+}
+/* #endif */
+
+/* #ifdef VUE3 */
+uni-checkbox :deep(.uni-checkbox-input){
+	border-radius: 50% !important;
+	color: #ffffff !important;
+	border-color: $miliqk-border-color !important;
+}
+uni-checkbox :deep(.uni-checkbox-input.uni-checkbox-input-checked){
+	color: $miliqk-primary !important ;
+	border-color: $miliqk-border-color !important;
+	background: $miliqk-primary !important;
+}
+uni-checkbox :deep(.uni-checkbox-input.uni-checkbox-input-checked:after){
+	font-size: 18px;
+}
+/* #endif */
+
+/* #endif */

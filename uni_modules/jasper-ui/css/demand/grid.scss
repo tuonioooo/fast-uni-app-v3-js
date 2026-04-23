@@ -1,0 +1,48 @@
+/**
+ * @description 官方uv-grid/uni-grid 内置标签 样式(scss)扩展定义 支持nvue、h5(vue)、小程序
+ * @example:
+   <view class="category-grid">
+ *  <uv-grid col="4" :show-border="false" >
+      <uv-grid-item v-for="(item, index) in tags" :key="item.id" @click="onPopupChange(index)">
+        <view class="grid-item-box">
+          <image class="image jasper-radius" src="/static/images/20210808102002105779.png" mode="aspectFill" @error="(event: any)=>imageError(event, index)"></image>
+          <text class="jasper-fz14">{{ item.name }}</text>
+        </view>
+      </uv-grid-item>
+    </uv-grid>
+    </view>
+ * 调用方式  按需引入
+   注意: 其中 jasper-前缀的样式是依赖于jasper-ui的全局的样式库
+ */
+
+.category-grid {
+  /* #ifndef APP-NVUE */
+  display: flex;
+  /* #endif */
+  position: relative;
+  flex: 1;
+  flex-direction: column;
+  /* border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #ebebeb; */
+  /* #ifdef H5 */
+  width: 100%;
+  /* #endif */
+  padding: 20rpx 30rpx 21rpx 30rpx;
+  background-color: #ffffff;
+}
+.grid-item-box {
+  flex: 1;
+  /* #ifndef APP-NVUE */
+  display: flex;
+  /* #endif */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0;
+}
+.image {
+  width: 96rpx;
+  height: 96rpx;
+  margin-bottom: 10rpx;
+}

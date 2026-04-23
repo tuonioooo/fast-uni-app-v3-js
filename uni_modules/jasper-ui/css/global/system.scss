@@ -1,0 +1,54 @@
+/**
+ * @description 系统变量 兼容app-vue、h5、小程序 注意（不兼容nvue）
+ * 调用方式 全局引入
+ */
+.jasper-top-window{
+  height: var(--top-window-height);
+}
+
+.jasper-left-window{
+  width: var(--window-left);
+}
+
+.jasper-left-window-height{
+  height : calc(100vh - (var(--top-window-height)));
+}
+
+.jasper-right-window{
+  width : var(--window-right) ;
+}
+
+.jasper-status-bar{
+  height: var(--status-bar-height);
+}
+
+// 底部安全区域 可以通过浏览器或者微信开发者工具 选择iPhoneX机型 查看值的变化,有导航栏会自动加上导航栏的高度
+// @see https://ask.dcloud.net.cn/question/150842
+.jasper-win-bottom{
+  height: var(--windown-bottom);
+}
+/**
+   1.constant()
+   函数来尝试获取屏幕底部安全区域的内边距值，并将其设置为.safeBottom类元素的底部内边距。
+   然而，需要注意的是，constant()函数是一个早期的非标准实现，
+   主要用于iOS 11.0至11.2的Safari浏览器。随着Web标准的发展，constant()函数已被env()函数所取代。
+   2.env()
+   函数来获取屏幕底部安全区域的内边距值，并将其应用于.safeBottom类元素的底部内边距。env()函数是constant()函数的替代品，用于iOS 11.2及更高版本的Safari浏览器，同时也被其他浏览器支持（如Chrome），用于实现类似的功能。
+ */
+.jasper-safe-area-inset-bottom{
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  /* #ifdef H5 */
+  padding-bottom: var(--window-bottom);
+  /* #endif */
+}
+/**
+ * @description 通过读取该类的高度，可以获取底部安全区域的高度，从而实现底部安全区域适配。
+ */
+.jasper-abs-safe-area-inset-bottom {
+  position: absolute;
+  /* #ifndef APP-PLUS */
+  height: constant(safe-area-inset-bottom);
+  height: env(safe-area-inset-bottom);
+  /* #endif */
+}

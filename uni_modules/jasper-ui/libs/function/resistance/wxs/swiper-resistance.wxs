@@ -1,0 +1,165 @@
+var vertDifference = 30; // 垂直判断阈值
+var horiDifference = 30; // 水平判断阈值
+var vertDegree = 45; // 垂直容差角度值
+var horiDegree = 45; // 水平容差角度值
+var timeThreshold = 1000; // 手指停留时间阈值（ms）
+
+var vertToleranceDeg = Math.tan(vertDegree); // 垂直容差角度判断阈值
+var horiToleranceDeg = Math.tan(horiDegree); // 水平容差角度判断阈值
+
+
+var startTime = 0, startX = 0, startY = 0, lastX = 0, lastY = 0, touching = false;
+// 绑定逻辑层的数据
+var wxsData = {}
+
+var init_resistance = { // 抗拒力值设置
+    diff: 0,    // 水平
+    degree: 0,  // 垂直
+    timeThreshold: 5000 // 手指停留时间
+}
+
+/**
+ * 注意：
+ *
+ * 1.建议用函数形式声明来访问全局变量，如果： function xxx(a){}
+ * 2.函数声明方式：var xx = function(a){} 这种形式访问全局变量 会有问题
+ *
+ * @param e
+ */
+function ontouchStart(e) {
+    var touch = e.touches[0] || e.changedTouches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+    startTime = Date.now();
+    touching = true;
+}
+
+function ontouchMove(e) {
+    //获取滑动行为对象
+    var slideAction = getSlideAction(e, 'touchmove');
+    if (!slideAction) {
+        console.log('无法获取滑动行为，由于timeThreshold阈值（默认值）<手指按压时间过长');
+        return false; // 仅用于结构，防止默认行为
+    }
+    var direction = slideAction.direction;
+    if(direction == 'slideRight' && wxsData.current === 0){
+        // 第一项静止向右滑动
+        return false;
+    }
+    if(direction == 'slideLeft' && wxsData.current === wxsData.lastIndex){
+        // 最后一项静止向左滑动
+        return false;
+    }
+    return slideAction;
+}
+
+function ontouchEnd(e) {
+    var touch = e.touches[0] || e.changedTouches[0];
+    lastX = touch.clientX;
+    lastY = touch.clientY;
+    var endTime = Date.now();
+    var stayTime = endTime - startTime;
+
+    if (stayTime > timeThreshold) {
+        touching = false;
+        return;
+    }
+
+    var action = getSlideAction(e, 'touchend');
+    return action; // 返回滑动动作对象
+}
+
+function getSlideAction(e, eventName) {
+    var endTime = Date.now();
+    var touch = e.touches[0] || e.changedTouches[0]
+
+    lastX = touch.clientX
+    lastY = touch.clientY
+    //判断手指的停留时间是否小于阈值   超过阈值（默认1秒） 则不触发
+    var stayTime = endTime - startTime;
+    //console.log(stayTime, startTime, "-----stayTime-------", timeThreshold, stayTime > timeThreshold);
+    if (stayTime > timeThreshold) {
+
+        touching = false;
+        return;
+    }
+
+    //定义手势滑动行为对象 供父组件调用
+    var action = {
+        point: {
+            startX: startX,  // 起始X坐标
+            startY: startY,  // 起始Y坐标
+            lastX: lastX,   // (终止/当前移动位置)X坐标
+            lastY: lastY   // (终止/当前移动所在位置)Y坐标
+        },
+        difference: {
+            differenceAbsX: Math.abs(startX - lastX), // X轴绝对坐标差
+            differenceAbsY: Math.abs(startY - lastY), // Y轴绝对坐标差
+            differenceX: startX - lastX, // X轴坐标差
+            differenceY: startY - lastY  // Y轴坐标差
+        },
+        stayTime: stayTime,  //停留时间
+        direction: '',// 滑动的方向
+        event: eventName //当前滑动触发事件名称 touchmove、touchend
+    };
+
+    // 判断滑动距离比是否小于垂直容差角度值
+    if (Math.abs((lastX - startX) / (lastY - startY)) < vertToleranceDeg) {
+        // 上滑事件，判断垂直滑动距离是否大于垂直判断阈值
+        if (Math.abs(startY - lastY) >= vertDifference && startY - lastY > 0) {
+            action['direction'] = 'slideUp';
+        }
+
+        // 下滑事件，判断垂直滑动距离是否大于垂直判断阈值
+        else if (Math.abs(startY - lastY) >= vertDifference && startY - lastY < 0) {
+            action['direction'] = 'slideDown';
+        }
+    }
+
+    // 判断滑动距离比是否小于水平容差角度值
+    else if (Math.abs((lastY - startY) / (lastX - startX)) < horiToleranceDeg) {
+        // 左滑事件，判断水平滑动距离是否大于水平判断阈值
+        if (Math.abs(startX - lastX) >= horiDifference && startX - lastX > 0) {
+            action['direction'] = 'slideLeft';
+        }
+        // 右滑事件，判断水平滑动距离是否大于垂直判断阈值
+        else if (Math.abs(startX - lastX) >= horiDifference && startX - lastX < 0) {
+            action['direction'] = 'slideRight';
+        }
+    }
+
+    return action;
+}
+
+/**
+ * @description    监听父组件传递过来的数据
+ * @param wxsProp
+ */
+function propObserver(wxsProp) {
+    if(!wxsProp) return
+    wxsData = wxsProp;
+    // console.log('[resistance.wxs]-wsData=' + JSON.stringify(wxsData))
+    resistance(
+        wxsData.resistance
+        ? wxsData.resistance
+        : init_resistance)
+}
+
+/**
+ * @description    设置滑动阻力抗拒值
+ * @param resistance
+ */
+function resistance(resistance) {
+    horiDifference = resistance.diff; // 水平
+    horiDegree = resistance.degree;
+    vertDifference = resistance.diff; // 垂直
+    vertDegree = resistance.degree;
+    timeThreshold = resistance.timeThreshold; //手指停留时间
+}
+
+module.exports = {
+    ontouchStart: ontouchStart,
+    ontouchMove: ontouchMove,
+    ontouchEnd: ontouchEnd,
+    propObserver:propObserver
+};

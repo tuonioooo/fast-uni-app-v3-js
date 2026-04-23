@@ -1,0 +1,239 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+
+ * 这套方案全部是 SCSS 变量，在编译阶段就已经全部转换成具体的颜色值了，最终输出的是普通 CSS，不存在运行时的浏览器 API 调用，所以小程序、H5、App 全平台都没有问题。
+ * 简单说就是：SCSS 变量是编译时概念，不是运行时概念，平台无关。
+ */
+
+// ================================
+// 1. 品牌主色（改这里全局生效）
+// ================================
+$primary: #007aff;
+$primary-dark:   darken($primary, 10%);
+$primary-light:  lighten($primary, 40%);
+$primary-disabled: lighten($primary, 20%);
+$primary-inverse: #ffffff;
+
+$success: #4cd964;
+$warning: #f0ad4e;
+$error: #dd524d;
+$info: #909399;
+
+// 文字
+$text-color: #333;
+$text-color-inverse: #fff; // 反色
+$text-color-grey: #999; // 辅助灰色，如加载更多的提示信息
+$text-color-placeholder: #808080;
+$text-color-disable: #c0c0c0;
+
+// 中性文字（兼容 jasper-ui 体系）
+$text-main:      #3a3a3a;   // 主要文字
+$text-content:   #606266;   // 内容文字
+$text-tips:      #909193;   // 提示文字
+$text-light:     #c0c4cc;   // 浅色文字
+$text-disabled:  #c8c9cc;   // 禁用文字
+$text-secondary: #909399;   // 次要文字
+$text-extra:     #c7c7c7;   // 辅助说明
+
+// 背景
+$bg-color: #ffffff;
+$bg-color-grey: #f8f8f8;
+$bg-color-hover: #f1f1f1;
+$bg-color-mask: rgba(0, 0, 0, 0.4);
+$bg-color-page:  #f3f4f6;   // 页面级背景兼容 jasper-ui 体系
+
+// 边框
+$border-color:   #c8c7cc;
+$border-1:       #F0F0F0;
+$border-2:       #EDEDED;
+$border-3:       #DCDCDC;
+$border-4:       #B9B9B9;
+
+// 字号
+$font-size-sm: 12px;
+$font-size-base: 14px;
+$font-size-lg: 16px;
+
+// 图片尺寸
+$img-size-sm: 20px;
+$img-size-base: 26px;
+$img-size-lg: 40px;
+
+// 间距 - 水平和垂直分开，值不同
+$spacing-row-sm:   5px;
+$spacing-row-base: 10px;
+$spacing-row-lg:   15px;
+
+$spacing-col-sm:   4px;
+$spacing-col-base: 8px;
+$spacing-col-lg:   12px;
+
+// 圆角
+$radius-sm: 2px;
+$radius-base: 3px;
+$radius-lg: 6px;
+$radius-circle: 50%;
+
+// 透明度
+$opacity-disabled: 0.3;
+
+// 文章场景
+$color-title:     #2C405A;      // 文章标题颜色
+$font-size-title: 20px;
+
+$color-subtitle:     #555555;   // 二级标题颜色
+$font-size-subtitle: 26px;
+
+$color-paragraph:     #3F536E;  // 文章段落颜色
+$font-size-paragraph: 15px;
+
+// ================================
+// 2. 映射 uni 官方变量
+// ================================
+
+/* 颜色变量 */
+
+/* 行为相关颜色 */
+$uni-color-primary:             $primary;
+$uni-color-success:             $success;
+$uni-color-warning:             $warning;
+$uni-color-error:               $error;
+
+/* 文字基本颜色 */
+$uni-text-color:                $text-color;
+$uni-text-color-inverse:        $text-color-inverse;
+$uni-text-color-grey:           $text-color-grey;
+$uni-text-color-placeholder:    $text-color-placeholder;
+$uni-text-color-disable:        $text-color-disable;
+
+/* 背景颜色 */
+$uni-bg-color:                  $bg-color;
+$uni-bg-color-grey:             $bg-color-grey;
+$uni-bg-color-hover:            $bg-color-hover;
+$uni-bg-color-mask:             $bg-color-mask;
+
+/* 边框颜色 */
+$uni-border-color:              $border-color;
+
+/* 尺寸变量 */
+
+/* 文字尺寸 */
+$uni-font-size-sm:              $font-size-sm;
+$uni-font-size-base:            $font-size-base;
+$uni-font-size-lg:              $font-size-lg;
+
+/* 图片尺寸 */
+$uni-img-size-sm:               $img-size-sm;
+$uni-img-size-base:             $img-size-base;
+$uni-img-size-lg:               $img-size-lg;
+
+/* 水平间距 */
+$uni-spacing-row-sm:            $spacing-row-sm;
+$uni-spacing-row-base:          $spacing-row-base;
+$uni-spacing-row-lg:            $spacing-row-lg;
+
+/* 垂直间距 */
+$uni-spacing-col-sm:            $spacing-col-sm;
+$uni-spacing-col-base:          $spacing-col-base;
+$uni-spacing-col-lg:            $spacing-col-lg;
+
+
+/* 圆角 */
+$uni-border-radius-sm:          $radius-sm;
+$uni-border-radius-base:        $radius-base;
+$uni-border-radius-lg:          $radius-lg;
+$uni-border-radius-circle:      $radius-circle;
+
+
+/* 透明度 */
+$uni-opacity-disabled:          $opacity-disabled; // 组件禁用态的透明度
+
+/* 文章场景相关 */
+$uni-color-title:               $color-title;
+$uni-font-size-title:           $font-size-title;
+
+$uni-color-subtitle:            $color-subtitle;
+$uni-font-size-subtitle:        $font-size-subtitle;
+
+$uni-color-paragraph:           $color-paragraph;
+$uni-font-size-paragraph:       $font-size-paragraph;
+
+// ================================
+// 3. 映射 uv-ui 变量
+// ================================
+$uv-primary:          $primary;
+$uv-primary-dark:     $primary-dark;
+$uv-primary-disabled: $primary-disabled;
+$uv-primary-light:    $primary-light;
+
+$uv-success:          $success;
+$uv-success-dark:     darken($success, 8%);
+$uv-success-disabled: lighten($success, 25%);
+$uv-success-light:    lighten($success, 45%);
+
+$uv-warning:          $warning;
+$uv-warning-dark:     darken($warning, 8%);
+$uv-warning-disabled: lighten($warning, 25%);
+$uv-warning-light:    lighten($warning, 35%);
+
+$uv-error:            $error;
+$uv-error-dark:       darken($error, 8%);
+$uv-error-disabled:   lighten($error, 20%);
+$uv-error-light:      lighten($error, 35%);
+
+$uv-info:             $info;
+$uv-info-dark:        darken($info, 8%);
+$uv-info-disabled:    lighten($info, 20%);
+$uv-info-light:       lighten($info, 35%);
+
+$uv-main-color:       $text-main;
+$uv-content-color:    $text-content;
+$uv-tips-color:       $text-tips;
+$uv-light-color:      $text-light;
+$uv-disabled-color:   $text-disabled;
+$uv-border-color:     $border-color;
+$uv-bg-color:         $bg-color-page;
+
+// 引入uv-ui 默认主题
+@import "@/uni_modules/jasper-ui/css/theme/uv-theme-override.scss";
+
+// ================================
+// 4. 映射 jasper-ui 变量
+// ================================
+$jasper-primary:          $primary;
+$jasper-primary-dark:     $primary-dark;
+$jasper-primary-disabled: $primary-disabled;
+$jasper-primary-light:    $primary-light;
+$jasper-primary-inverse:  $primary-inverse;
+
+$jasper-main-color:       $text-main;
+$jasper-content-color:    $text-content;
+$jasper-tips-color:       $text-tips;
+$jasper-light-color:      $text-light;
+$jasper-disabled-color:   $text-disabled;
+$jasper-secondary-color:  $text-secondary;
+$jasper-extra-color:      $text-extra;
+
+$jasper-border-color:     $primary;   // jasper 边框色跟主色一致
+$jasper-border-1:         $border-1;
+$jasper-border-2:         $border-2;
+$jasper-border-3:         $border-3;
+$jasper-border-4:         $border-4;
+
+$jasper-bg-color:         $bg-color-page;
+
+// 引入jasper-ui 插件扩展主题 （放最后），jasper-ui 内部如果用了 !default 就会被你的值覆盖
+// jasper-ui 内部大概是这样写的
+// $primary: #ff0000 !default;
+// !default 的意思是：如果这个 $primary 变量之前没有被赋值，就使用这个默认值；如果已经有值了，就跳过这次赋值。”
+@import "@/uni_modules/jasper-ui/css/theme/theme.scss";

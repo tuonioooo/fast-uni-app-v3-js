@@ -1,0 +1,190 @@
+//引入组件样式
+@import "../global/components.scss";
+
+// 主色
+$jasper-primary: #feda33 !default; //主色(一般用于背景色)
+$jasper-primary-text: #fca000 !default; //主色文本 
+$jasper-primary-dark: #dbb733 !default; //暗主色(一般用于背景色)
+$jasper-primary-disabled: #fad43b !default;
+$jasper-primary-light: #faefbf !default;  //亮主色(一般用于背景色)
+$jasper-primary-inverse: #000000 !default; //主色搭配的反色 (用于文本居多)
+
+// 文本颜色
+// 中性色用于文本、背景和边框颜色。通过运用不同的中性色，来表现层次结构。
+$jasper-main-color: #3a3a3a !default; 			// 主要文字
+$jasper-content-color: #606266 !default;
+$jasper-tips-color: #909193 !default;
+$jasper-light-color: #c0c4cc !default;
+$jasper-disabled-color: #c8c9cc !default;
+$jasper-secondary-color: #909399 !default;	    // 次要文字
+$jasper-extra-color: #c7c7c7 !default;			// 辅助说明
+
+//边框颜色
+$jasper-border-color: #fca000 !default;  //边框颜色
+$jasper-border-1: #F0F0F0 !default;      //1级边框
+$jasper-border-2: #EDEDED !default;      //2级边框
+$jasper-border-3: #DCDCDC !default;      //3级边框
+$jasper-border-4: #B9B9B9 !default;      //4级边框
+
+//背景色
+$jasper-bg-color: #f3f4f6 !default;
+
+// ===颜色的扩展配置===
+
+/* 常规色 */
+
+// 阴影颜色
+$jasper-shadow-color: rgba(0, 0, 0, 0.1);
+$jasper-box-shadow-color: rgba(0, 0, 0, 0.2);
+
+$jasper-color-red: #E83A30;
+$jasper-color-red-dark: #BA2E26;
+$jasper-color-red-disabled: #F39C97;
+$jasper-color-red-light: #FAD8D6;
+
+$jasper-color-pink: #E72F8C;
+$jasper-color-pink-dark: #B9266F;
+$jasper-color-pink-disabled: #F397C5;
+$jasper-color-pink-light: #FAD5E8;
+//紫色
+$jasper-color-purple: #892FE8;
+$jasper-color-purple-dark: #6E26BA;
+$jasper-color-purple-disabled: #C497F3;
+$jasper-color-purple-light: #E7D5FA;
+//紫罗兰（蓝紫色）
+$jasper-color-bluepurple: #5F4FD9;
+$jasper-color-bluepurple-dark: #4C3FAE;
+$jasper-color-bluepurple-disabled: #AFA7EC;
+$jasper-color-bluepurple-light: #DFDCF7;
+//海蓝
+$jasper-color-aquablue: #3646FF;
+$jasper-color-aquablue-dark: #2B38CC;
+$jasper-color-aquablue-disabled: #9AA2FF;
+$jasper-color-aquablue-light: #D7DAFF;
+
+$jasper-color-blue: #3D7EFF;
+$jasper-color-blue-dark: #3165CC;
+$jasper-color-blue-disabled: #9EBEFF;
+$jasper-color-blue-light: #D8E5FF;
+
+$jasper-color-indigo: #31C9E8;
+$jasper-color-indigo-dark: #27A1BA;
+$jasper-color-indigo-disabled: #98E4F3;
+$jasper-color-indigo-light: #D6F4FA;
+
+$jasper-color-cyan: #2DE8BD;
+$jasper-color-cyan-dark: #24BA97;
+$jasper-color-cyan-disabled: #96F3DE;
+$jasper-color-cyan-light: #D5FAF2;
+
+$jasper-color-teal: #24F083;
+$jasper-color-teal-dark: #1DC069;
+$jasper-color-teal-disabled: #91F7C1;
+$jasper-color-teal-light: #D3FCE6;
+
+$jasper-color-green: #31E749;
+$jasper-color-green-dark: #27B93A;
+$jasper-color-green-disabled: #98F3A4;
+$jasper-color-green-light: #D6FADB;
+
+$jasper-color-yellowgreen: #A4E82F;
+$jasper-color-yellowgreen-dark: #82BA26;
+$jasper-color-yellowgreen-disabled: #D1F397;
+$jasper-color-yellowgreen-light: #EDFAD5;
+
+$jasper-color-lime: #D5EB00;
+$jasper-color-lime-dark: #AABC00;
+$jasper-color-lime-disabled: #E9F57F;
+$jasper-color-lime-light: #F7FBCC;
+
+$jasper-color-yellow: #FFF420;
+$jasper-color-yellow-dark: #CCC21A;
+$jasper-color-yellow-disabled: #FFF88F;
+$jasper-color-yellow-light: #FFFDD2;
+
+$jasper-color-orangeyellow: #FFCA28;
+$jasper-color-orangeyellow-dark: #CCA220;
+$jasper-color-orangeyellow-disabled: #FFE493;
+$jasper-color-orangeyellow-light: #FFF4D4;
+
+$jasper-color-orange: #FFA726;
+$jasper-color-orange-dark: #CC851E;
+$jasper-color-orange-disabled: #FFD392;
+$jasper-color-orange-light: #FFEDD4 ;
+
+$jasper-color-orangered: #FF7043;
+$jasper-color-orangered-dark: #CC5A36;
+$jasper-color-orangered-disabled: #FFB7A1;
+$jasper-color-orangered-light: #FFE2D9;
+
+$jasper-color-brown: #914F2C;
+$jasper-color-brown-dark: #743F23;
+$jasper-color-brown-disabled: #C8A795;
+$jasper-color-brown-light: #E9DCD5;
+
+$jasper-color-grey: #78909C;
+$jasper-color-grey-dark: #5F7E8B;
+$jasper-color-grey-disabled: #C6D1D8;
+$jasper-color-grey-light: #E4E9EC;
+
+$jasper-color-gray: #AAAAAA;
+$jasper-color-gray-dark: #838383;
+$jasper-color-gray-disabled: #E6E6E6;
+$jasper-color-gray-light: #F8F7F8;
+
+$jasper-color-black: #2c2b2b;
+$jasper-color-gray-disabled: #E6E6E6;
+$jasper-color-gray-light: #2C2B2BFF;
+
+// 炫酷色
+$jasper-cool-bg-color-1-start: #F5317F;
+$jasper-cool-bg-color-1-end: #FF7C6E;
+
+$jasper-cool-bg-color-2-start: #CA26FF;
+$jasper-cool-bg-color-2-end: #F360A7;
+
+$jasper-cool-bg-color-3-start: #A26FFC;
+$jasper-cool-bg-color-3-end: #9D12FF;
+
+$jasper-cool-bg-color-4-start: #AA77F0;
+$jasper-cool-bg-color-4-end: #E871E5;
+
+$jasper-cool-bg-color-5-start: #40A0F7;
+$jasper-cool-bg-color-5-end: #4866E6;
+
+$jasper-cool-bg-color-6-start: #209CFF;
+$jasper-cool-bg-color-6-end: #68E0CF;
+
+$jasper-cool-bg-color-7-start: #00C3FF;
+$jasper-cool-bg-color-7-end: #58FFF5;
+
+$jasper-cool-bg-color-8-start: #00d1FF;
+$jasper-cool-bg-color-8-end: #69FF97;
+
+$jasper-cool-bg-color-9-start: #0FD893;
+$jasper-cool-bg-color-9-end: #29ECBF;
+
+$jasper-cool-bg-color-10-start: #0FD850;
+$jasper-cool-bg-color-10-end: #F9F047;
+
+$jasper-cool-bg-color-11-start: #24FE41;
+$jasper-cool-bg-color-11-end: #F7FD47;
+
+$jasper-cool-bg-color-12-start: #D6FF7F;
+$jasper-cool-bg-color-12-end: #00F657;
+
+$jasper-cool-bg-color-13-start: #FA709A;
+$jasper-cool-bg-color-13-end: #FEE140;
+
+$jasper-cool-bg-color-14-start: #FE5E9C;
+$jasper-cool-bg-color-14-end: #F1AA76;
+
+$jasper-cool-bg-color-15-start: #FF3181;
+$jasper-cool-bg-color-15-end: #FF8331;
+
+$jasper-cool-bg-color-16-start: #ED1C24;
+$jasper-cool-bg-color-16-end: #FECE12;
+
+
+
+

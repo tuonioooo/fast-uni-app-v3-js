@@ -1,0 +1,39 @@
+/**
+ * @description 官方swiper内置标签 样式(scss)扩展定义 支持nvue、h5(vue)、小程序
+ * @example:
+ *  <swiper class="swiper-box">
+ * 		<swiper-item class="swiper-item scroll-v">
+ * 			<xxx class="swiper-item-page" />
+		</swiper-item>
+    </swiper>
+ * 调用方式  按需引入
+ */
+.swiper-box {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	height: 100%; // 非nvue 下 需要设置 height: 100%  nvue不需要，因为nvue页面 view flex布局是column，会自动占满纵向的空间
+	/* #endif */
+	flex: 1;
+}
+
+.swiper-item, .swiper-item-page {
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex: 1;
+	flex-direction: row;
+}
+
+.scroll-v {
+	flex: 1;
+
+	/* #ifdef H5 || APP-PLUS */
+	flex-direction: column;
+	/* #endif */
+
+	width: 750rpx;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	flex-direction: column;
+	/* #endif */
+}

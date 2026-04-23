@@ -1,0 +1,517 @@
+/**
+ * @description 扩展颜色配置
+ * 调用方式  全局引入  不支持nvue
+ */
+
+
+@mixin getColor($color: #FFFFFF, $light-color: #FFFFFF, $dark-color: #FFFFFF, $disabled-color: #FFFFFF) {
+  color: $color !important;
+  @if $color != #FFFFFF and $color != #000000 {
+    &--light {
+      color: $light-color !important;
+    }
+    &--dark {
+      color: $dark-color !important;
+    }
+    &--disabled {
+      color: $disabled-color !important;
+    }
+  }
+}
+
+@mixin getGradientColor($start-color, $end-color, $font-color: #FFFFFF) {
+  background-image: repeating-linear-gradient(45deg, $start-color, $end-color);
+  color: $font-color;
+
+  &--reverse {
+    background-image: repeating-linear-gradient(-45deg, $start-color, $end-color);
+    color: $font-color;
+  }
+}
+
+@mixin getMainColorGradient($start-color, $start-color-light, $start-color-disabled, $end-color, $end-color-light) {
+  @include getGradientColor($start-color, $end-color);
+
+  &--light {
+    @include getGradientColor($start-color-light, $end-color-light, $start-color);
+  }
+
+  &--single {
+    @include getGradientColor($start-color, $start-color-disabled);
+  }
+}
+
+@mixin getBorderColor($color: #FFFFFF, $light-color: #FFFFFF, $dark-color: #FFFFFF, $disabled-color: #FFFFFF) {
+  @if $color != #FFFFFF and $color != #000000 {
+    &--light {
+      border-color: $light-color !important;
+    }
+    &--dark {
+      border-color: $dark-color !important;
+    }
+    &--disabled {
+      border-color: $disabled-color !important;
+    }
+  }
+  border-color: $color !important;
+}
+
+@mixin getShadowColor($type: box, $color: #FFFFFF) {
+  @if $type == box {
+    box-shadow: 12rpx 12rpx 16rpx #{$color};
+  } @else if $type == text {
+    text-shadow: 6rpx 6rpx 8rpx #{$color};
+  }
+}
+
+@mixin getBackgroundColor($color: #FFFFFF, $light-color: #FFFFFF, $dark-color: #FFFFFF, $disabled-color: #FFFFFF) {
+  background-color: $color !important;
+  @if $color != #FFFFFF and $color != #000000 {
+    color: $jasper-main-color;
+    &--light {
+      background-color: $light-color !important;
+    }
+    &--dark {
+      background-color: $dark-color !important;
+    }
+    &--disabled {
+      background-color: $disabled-color !important;
+    }
+  }
+  @else {
+    color: $jasper-main-color;
+  }
+}
+
+
+/* 颜色 start */
+.jasper-color-red {
+  @include getColor($jasper-color-red, $jasper-color-red-light, $jasper-color-red-dark, $jasper-color-red-disabled);
+}
+.jasper-color-pink {
+  @include getColor($jasper-color-pink, $jasper-color-pink-light, $jasper-color-pink-dark, $jasper-color-pink-disabled);
+}
+.jasper-color-purple {
+  @include getColor($jasper-color-purple, $jasper-color-purple-light, $jasper-color-purple-dark, $jasper-color-purple-disabled);
+}
+.jasper-color-bluepurple {
+  @include getColor($jasper-color-bluepurple, $jasper-color-bluepurple-light, $jasper-color-bluepurple-dark, $jasper-color-bluepurple-disabled);
+}
+.jasper-color-aquablue {
+  @include getColor($jasper-color-aquablue, $jasper-color-aquablue-light, $jasper-color-aquablue-dark, $jasper-color-aquablue-disabled);
+}
+.jasper-color-blue {
+  @include getColor($jasper-color-blue, $jasper-color-blue-light, $jasper-color-blue-dark, $jasper-color-blue-disabled);
+}
+.jasper-color-indigo {
+  @include getColor($jasper-color-indigo, $jasper-color-indigo-light, $jasper-color-indigo-dark, $jasper-color-indigo-disabled);
+}
+.jasper-color-cyan {
+  @include getColor($jasper-color-cyan, $jasper-color-cyan-light, $jasper-color-cyan-dark, $jasper-color-cyan-disabled);
+}
+.jasper-color-teal {
+  @include getColor($jasper-color-teal, $jasper-color-teal-light, $jasper-color-teal-dark, $jasper-color-teal-disabled);
+}
+.jasper-color-green {
+  @include getColor($jasper-color-green, $jasper-color-green-light, $jasper-color-green-dark, $jasper-color-green-disabled);
+}
+.jasper-color-yellowgreen {
+  @include getColor($jasper-color-yellowgreen, $jasper-color-yellowgreen-light, $jasper-color-yellowgreen-dark, $jasper-color-yellowgreen-disabled);
+}
+.jasper-color-lime {
+  @include getColor($jasper-color-lime, $jasper-color-lime-light, $jasper-color-lime-dark, $jasper-color-lime-disabled);
+}
+.jasper-color-yellow {
+  @include getColor($jasper-color-yellow, $jasper-color-yellow-light, $jasper-color-yellow-dark, $jasper-color-yellow-disabled);
+}
+.jasper-color-orangeyellow {
+  @include getColor($jasper-color-orangeyellow, $jasper-color-orangeyellow-light, $jasper-color-orangeyellow-dark, $jasper-color-orangeyellow-disabled);
+}
+.jasper-color-orange {
+  @include getColor($jasper-color-orange, $jasper-color-orange-light, $jasper-color-orange-dark, $jasper-color-orange-disabled);
+}
+.jasper-color-orangered {
+  @include getColor($jasper-color-orangered, $jasper-color-orangered-light, $jasper-color-orangered-dark, $jasper-color-orangered-disabled);
+}
+.jasper-color-brown {
+  @include getColor($jasper-color-brown, $jasper-color-brown-light, $jasper-color-brown-dark, $jasper-color-brown-disabled);
+}
+.jasper-color-grey {
+  @include getColor($jasper-color-grey, $jasper-color-grey-light, $jasper-color-grey-dark, $jasper-color-grey-disabled);
+}
+.jasper-color-gray {
+  @include getColor($jasper-color-gray, $jasper-color-gray-light, $jasper-color-gray-dark, $jasper-color-gray-disabled);
+}
+.jasper-color-white {
+  @include getColor();
+}
+.jasper-color-black {
+  @include getColor(#000000);
+}
+/* 颜色 end */
+
+/* 背景颜色-start */
+.jasper-bg-red {
+  @include getBackgroundColor($jasper-color-red, $jasper-color-red-light, $jasper-color-red-dark, $jasper-color-red-disabled);
+}
+.jasper-bg-pink {
+  @include getBackgroundColor($jasper-color-pink, $jasper-color-pink-light, $jasper-color-pink-dark, $jasper-color-pink-disabled);
+}
+.jasper-bg-purple {
+  @include getBackgroundColor($jasper-color-purple, $jasper-color-purple-light, $jasper-color-purple-dark, $jasper-color-purple-disabled);
+}
+.jasper-bg-bluepurple {
+  @include getBackgroundColor($jasper-color-bluepurple, $jasper-color-bluepurple-light, $jasper-color-bluepurple-dark, $jasper-color-bluepurple-disabled);
+}
+.jasper-bg-aquablue {
+  @include getBackgroundColor($jasper-color-aquablue, $jasper-color-aquablue-light, $jasper-color-aquablue-dark, $jasper-color-aquablue-disabled);
+}
+.jasper-bg-blue {
+  @include getBackgroundColor($jasper-color-blue, $jasper-color-blue-light, $jasper-color-blue-dark, $jasper-color-blue-disabled);
+}
+.jasper-bg-indigo {
+  @include getBackgroundColor($jasper-color-indigo, $jasper-color-indigo-light, $jasper-color-indigo-dark, $jasper-color-indigo-disabled);
+}
+.jasper-bg-cyan {
+  @include getBackgroundColor($jasper-color-cyan, $jasper-color-cyan-light, $jasper-color-cyan-dark, $jasper-color-cyan-disabled);
+}
+.jasper-bg-teal {
+  @include getBackgroundColor($jasper-color-teal, $jasper-color-teal-light, $jasper-color-teal-dark, $jasper-color-teal-disabled);
+}
+.jasper-bg-green {
+  @include getBackgroundColor($jasper-color-green, $jasper-color-green-light, $jasper-color-green-dark, $jasper-color-green-disabled);
+}
+.jasper-bg-yellowgreen {
+  @include getBackgroundColor($jasper-color-yellowgreen, $jasper-color-yellowgreen-light, $jasper-color-yellowgreen-dark, $jasper-color-yellowgreen-disabled);
+}
+.jasper-bg-lime {
+  @include getBackgroundColor($jasper-color-lime, $jasper-color-lime-light, $jasper-color-lime-dark, $jasper-color-lime-disabled);
+}
+.jasper-bg-yellow {
+  @include getBackgroundColor($jasper-color-yellow, $jasper-color-yellow-light, $jasper-color-yellow-dark, $jasper-color-yellow-disabled);
+}
+.jasper-bg-orangeyellow {
+  @include getBackgroundColor($jasper-color-orangeyellow, $jasper-color-orangeyellow-light, $jasper-color-orangeyellow-dark, $jasper-color-orangeyellow-disabled);
+}
+.jasper-bg-orange {
+  @include getBackgroundColor($jasper-color-orange, $jasper-color-orange-light, $jasper-color-orange-dark, $jasper-color-orange-disabled);
+}
+.jasper-bg-orangered {
+  @include getBackgroundColor($jasper-color-orangered, $jasper-color-orangered-light, $jasper-color-orangered-dark, $jasper-color-orangered-disabled);
+}
+.jasper-bg-brown {
+  @include getBackgroundColor($jasper-color-brown, $jasper-color-brown-light, $jasper-color-brown-dark, $jasper-color-brown-disabled);
+}
+.jasper-bg-grey {
+  @include getBackgroundColor($jasper-color-grey, $jasper-color-grey-light, $jasper-color-grey-dark, $jasper-color-grey-disabled);
+}
+.jasper-bg-gray {
+  @include getBackgroundColor($jasper-color-gray, $jasper-color-gray-light, $jasper-color-gray-dark, $jasper-color-gray-disabled);
+}
+.jasper-bg-white {
+  @include getBackgroundColor();
+}
+.jasper-bg-black {
+  @include getBackgroundColor(#000000);
+}
+/* 背景颜色-end */
+
+/* 阴影颜色-start */
+
+.jasper-shadow-red {
+  @include getShadowColor(box, $jasper-color-red-light);
+}
+.jasper-shadow-pink {
+  @include getShadowColor(box, $jasper-color-pink-light);
+}
+.jasper-shadow-purple {
+  @include getShadowColor(box, $jasper-color-purple-light);
+}
+.jasper-shadow-bluepurple {
+  @include getShadowColor(box, $jasper-color-bluepurple-light);
+}
+.jasper-shadow-aquablue {
+  @include getShadowColor(box, $jasper-color-aquablue-light);
+}
+.jasper-shadow-blue {
+  @include getShadowColor(box, $jasper-color-blue-light);
+}
+.jasper-shadow-indigo {
+  @include getShadowColor(box, $jasper-color-indigo-light);
+}
+.jasper-shadow-cyan {
+  @include getShadowColor(box, $jasper-color-cyan-light);
+}
+.jasper-shadow-teal {
+  @include getShadowColor(box, $jasper-color-teal-light);
+}
+.jasper-shadow-green {
+  @include getShadowColor(box, $jasper-color-green-light);
+}
+.jasper-shadow-yellowgreen {
+  @include getShadowColor(box, $jasper-color-yellowgreen-light);
+}
+.jasper-shadow-lime {
+  @include getShadowColor(box, $jasper-color-lime-light);
+}
+.jasper-shadow-yellow {
+  @include getShadowColor(box, $jasper-color-yellow-light);
+}
+.jasper-shadow-orangeyellow {
+  @include getShadowColor(box, $jasper-color-orangeyellow-light);
+}
+.jasper-shadow-orange {
+  @include getShadowColor(box, $jasper-color-orange-light);
+}
+.jasper-shadow-orangered {
+  @include getShadowColor(box, $jasper-color-orangered-light);
+}
+.jasper-shadow-brown {
+  @include getShadowColor(box, $jasper-color-brown-light);
+}
+.jasper-shadow-grey {
+  @include getShadowColor(box, $jasper-color-grey-light);
+}
+.jasper-shadow-gray {
+  @include getShadowColor(box, $jasper-color-gray-light);
+}
+
+/* 阴影颜色-end */
+
+
+/* 边框颜色-start */
+
+.jasper-border-red {
+  @include getBorderColor($jasper-color-red, $jasper-color-red-light, $jasper-color-red-dark, $jasper-color-red-disabled);
+}
+.jasper-border-pink {
+  @include getBorderColor($jasper-color-pink, $jasper-color-pink-light, $jasper-color-pink-dark, $jasper-color-pink-disabled);
+}
+.jasper-border-purple {
+  @include getBorderColor($jasper-color-purple, $jasper-color-purple-light, $jasper-color-purple-dark, $jasper-color-purple-disabled);
+}
+.jasper-border-bluepurple {
+  @include getBorderColor($jasper-color-bluepurple, $jasper-color-bluepurple-light, $jasper-color-bluepurple-dark, $jasper-color-bluepurple-disabled);
+}
+.jasper-border-aquablue {
+  @include getBorderColor($jasper-color-aquablue, $jasper-color-aquablue-light, $jasper-color-aquablue-dark, $jasper-color-aquablue-disabled);
+}
+.jasper-border-blue {
+  @include getBorderColor($jasper-color-blue, $jasper-color-blue-light, $jasper-color-blue-dark, $jasper-color-blue-disabled);
+}
+.jasper-border-indigo {
+  @include getBorderColor($jasper-color-indigo, $jasper-color-indigo-light, $jasper-color-indigo-dark, $jasper-color-indigo-disabled);
+}
+.jasper-border-cyan {
+  @include getBorderColor($jasper-color-cyan, $jasper-color-cyan-light, $jasper-color-cyan-dark, $jasper-color-cyan-disabled);
+}
+.jasper-border-teal {
+  @include getBorderColor($jasper-color-teal, $jasper-color-teal-light, $jasper-color-teal-dark, $jasper-color-teal-disabled);
+}
+.jasper-border-green {
+  @include getBorderColor($jasper-color-green, $jasper-color-green-light, $jasper-color-green-dark, $jasper-color-green-disabled);
+}
+.jasper-border-yellowgreen {
+  @include getBorderColor($jasper-color-yellowgreen, $jasper-color-yellowgreen-light, $jasper-color-yellowgreen-dark, $jasper-color-yellowgreen-disabled);
+}
+.jasper-border-lime {
+  @include getBorderColor($jasper-color-lime, $jasper-color-lime-light, $jasper-color-lime-dark, $jasper-color-lime-disabled);
+}
+.jasper-border-yellow {
+  @include getBorderColor($jasper-color-yellow, $jasper-color-yellow-light, $jasper-color-yellow-dark, $jasper-color-yellow-disabled);
+}
+.jasper-border-orangeyellow {
+  @include getBorderColor($jasper-color-orangeyellow, $jasper-color-orangeyellow-light, $jasper-color-orangeyellow-dark, $jasper-color-orangeyellow-disabled);
+}
+.jasper-border-orange {
+  @include getBorderColor($jasper-color-orange, $jasper-color-orange-light, $jasper-color-orange-dark, $jasper-color-orange-disabled);
+}
+.jasper-border-orangered {
+  @include getBorderColor($jasper-color-orangered, $jasper-color-orangered-light, $jasper-color-orangered-dark, $jasper-color-orangered-disabled);
+}
+.jasper-border-brown {
+  @include getBorderColor($jasper-color-brown, $jasper-color-brown-light, $jasper-color-brown-dark, $jasper-color-brown-disabled);
+}
+.jasper-border-grey {
+  @include getBorderColor($jasper-color-grey, $jasper-color-grey-light, $jasper-color-grey-dark, $jasper-color-grey-disabled);
+}
+.jasper-border-gray {
+  @include getBorderColor($jasper-color-gray, $jasper-color-gray-light, $jasper-color-gray-dark, $jasper-color-gray-disabled);
+}
+.jasper-border-white {
+  @include getBorderColor();
+}
+.jasper-border-black {
+  @include getBorderColor(#000000);
+}
+
+/* 边框颜色-end */
+
+/* 渐变色 start */
+.jasper-gradient-red {
+  @include getMainColorGradient($jasper-color-red, $jasper-color-red-light, $jasper-color-red-disabled, $jasper-color-red, $jasper-color-red-light);
+}
+.jasper-gradient-pink {
+  @include getMainColorGradient($jasper-color-pink, $jasper-color-pink-light, $jasper-color-pink-disabled, $jasper-color-purple, $jasper-color-purple-light);
+}
+.jasper-gradient-purple {
+  @include getMainColorGradient($jasper-color-purple, $jasper-color-purple-light, $jasper-color-purple-disabled, $jasper-color-bluepurple, $jasper-color-bluepurple-light);
+}
+.jasper-gradient-bluepurple {
+  @include getMainColorGradient($jasper-color-bluepurple, $jasper-color-bluepurple-light, $jasper-color-bluepurple-disabled, $jasper-color-aquablue, $jasper-color-aquablue-light);
+}
+.jasper-gradient-aquablue {
+  @include getMainColorGradient($jasper-color-aquablue, $jasper-color-aquablue-light, $jasper-color-aquablue-disabled, $jasper-color-blue, $jasper-color-blue-light);
+}
+.jasper-gradient-blue {
+  @include getMainColorGradient($jasper-color-blue, $jasper-color-blue-light, $jasper-color-blue-disabled, $jasper-color-indigo, $jasper-color-indigo-light);
+}
+.jasper-gradient-indigo {
+  @include getMainColorGradient($jasper-color-indigo, $jasper-color-indigo-light, $jasper-color-indigo-disabled, $jasper-color-cyan, $jasper-color-cyan-light);
+}
+.jasper-gradient-cyan {
+  @include getMainColorGradient($jasper-color-cyan, $jasper-color-cyan-light, $jasper-color-cyan-disabled, $jasper-color-teal, $jasper-color-teal-light);
+}
+.jasper-gradient-teal {
+  @include getMainColorGradient($jasper-color-teal, $jasper-color-teal-light, $jasper-color-teal-disabled, $jasper-color-green, $jasper-color-green-light);
+}
+.jasper-gradient-green {
+  @include getMainColorGradient($jasper-color-green, $jasper-color-green-light, $jasper-color-green-disabled, $jasper-color-yellowgreen, $jasper-color-yellowgreen-light);
+}
+.jasper-gradient-yellowgreen {
+  @include getMainColorGradient($jasper-color-yellowgreen, $jasper-color-yellowgreen-light, $jasper-color-yellowgreen-disabled, $jasper-color-lime, $jasper-color-lime-light);
+}
+.jasper-gradient-lime {
+  @include getMainColorGradient($jasper-color-lime, $jasper-color-lime-light, $jasper-color-lime-disabled, $jasper-color-yellow, $jasper-color-yellow-light);
+}
+.jasper-gradient-yellow {
+  @include getMainColorGradient($jasper-color-yellow, $jasper-color-yellow-light, $jasper-color-yellow-disabled, $jasper-color-orangeyellow, $jasper-color-orangeyellow-light);
+}
+.jasper-gradient-orangeyellow {
+  @include getMainColorGradient($jasper-color-orangeyellow, $jasper-color-orangeyellow-light, $jasper-color-orangeyellow-disabled, $jasper-color-orange, $jasper-color-orange-light);
+}
+.jasper-gradient-orange {
+  @include getMainColorGradient($jasper-color-orange, $jasper-color-orange-light, $jasper-color-orange-disabled, $jasper-color-orangered, $jasper-color-orangered-light);
+}
+.jasper-gradient-orangered {
+  @include getMainColorGradient($jasper-color-orangered, $jasper-color-orangered-light, $jasper-color-orangered-disabled, $jasper-color-red, $jasper-color-red-light);
+}
+/* 渐变色 end */
+
+
+/* 动态背景颜色 start */
+
+.jasper-dynamic-bg-1 {
+  color: #fff;
+  background: linear-gradient(45deg, #F15BB5, #9A5CE5, #01BEFF, #00F5D4);
+  background-size: 500% 500%;
+  animation: dynamicBg 15s ease infinite;
+}
+
+@keyframes dynamicBg {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 动态背景颜色 end */
+
+/* 酷炫背景颜色图片 start */
+
+.jasper-cool-bg-color-1 {
+  @include getGradientColor($jasper-cool-bg-color-1-start, $jasper-cool-bg-color-1-end);
+}
+.jasper-cool-bg-color-2 {
+  @include getGradientColor($jasper-cool-bg-color-2-start, $jasper-cool-bg-color-2-end);
+}
+.jasper-cool-bg-color-3 {
+  @include getGradientColor($jasper-cool-bg-color-3-start, $jasper-cool-bg-color-3-end);
+}
+.jasper-cool-bg-color-4 {
+  @include getGradientColor($jasper-cool-bg-color-4-start, $jasper-cool-bg-color-4-end);
+}
+.jasper-cool-bg-color-5 {
+  @include getGradientColor($jasper-cool-bg-color-5-start, $jasper-cool-bg-color-5-end);
+}
+.jasper-cool-bg-color-6 {
+  @include getGradientColor($jasper-cool-bg-color-6-start, $jasper-cool-bg-color-6-end);
+}
+.jasper-cool-bg-color-7 {
+  @include getGradientColor($jasper-cool-bg-color-7-start, $jasper-cool-bg-color-7-end);
+}
+.jasper-cool-bg-color-8 {
+  @include getGradientColor($jasper-cool-bg-color-8-start, $jasper-cool-bg-color-8-end);
+}
+.jasper-cool-bg-color-9 {
+  @include getGradientColor($jasper-cool-bg-color-9-start, $jasper-cool-bg-color-9-end);
+}
+.jasper-cool-bg-color-10 {
+  @include getGradientColor($jasper-cool-bg-color-10-start, $jasper-cool-bg-color-10-end);
+}
+.jasper-cool-bg-color-11 {
+  @include getGradientColor($jasper-cool-bg-color-11-start, $jasper-cool-bg-color-11-end);
+}
+.jasper-cool-bg-color-12 {
+  @include getGradientColor($jasper-cool-bg-color-12-start, $jasper-cool-bg-color-12-end);
+}
+.jasper-cool-bg-color-13 {
+  @include getGradientColor($jasper-cool-bg-color-13-start, $jasper-cool-bg-color-13-end);
+}
+.jasper-cool-bg-color-14 {
+  @include getGradientColor($jasper-cool-bg-color-14-start, $jasper-cool-bg-color-14-end);
+}
+.jasper-cool-bg-color-15 {
+  @include getGradientColor($jasper-cool-bg-color-15-start, $jasper-cool-bg-color-15-end);
+}
+.jasper-cool-bg-color-16 {
+  @include getGradientColor($jasper-cool-bg-color-16-start, $jasper-cool-bg-color-16-end);
+}
+
+.jasper-cool-bg-image::after {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  border-radius: 10rpx;
+  opacity: 1;
+  transform: scale(1, 1);
+  background-size: 100% 100%;
+  background-image: inherit;
+}
+
+.jasper-cool-bg-image:nth-of-type(1n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/1.png);
+}
+
+.jasper-cool-bg-image:nth-of-type(2n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/2.png);
+}
+
+.jasper-cool-bg-image:nth-of-type(3n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/3.png);
+}
+
+.jasper-cool-bg-image:nth-of-type(4n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/4.png);
+}
+
+.jasper-cool-bg-image:nth-of-type(5n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/5.png);
+}
+
+.jasper-cool-bg-image:nth-of-type(6n)::after {
+  background-image: url(https://resource.tuniaokj.com/images/cool_bg_image/6.png);
+}
+
+/* 酷炫背景颜色图片 end */
