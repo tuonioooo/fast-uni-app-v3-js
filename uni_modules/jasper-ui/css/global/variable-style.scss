@@ -293,39 +293,39 @@ $s : 200 ;
 	}
 }
 
-$unc:2;
-@while $unc <= 10 {
-	.jasper-bd#{$unc}{
-		border: #{$unc}px solid $jasper-border-1;
+$jasper:2;
+@while $jasper <= 10 {
+	.jasper-bd#{$jasper}{
+		border: #{$jasper}px solid $jasper-border-1;
 		&.dashed{
 			border-style: dashed;
 		}
 	}
-	.jasper-bt#{$unc}{
-		border-top:#{$unc}px solid $jasper-border-1;
+	.jasper-bt#{$jasper}{
+		border-top:#{$jasper}px solid $jasper-border-1;
 		&.dashed{
 			border-top-style: dashed;
 		}
 	}
-	.jasper-bb#{$unc}{
-		border-bottom:#{$unc}px solid $jasper-border-1;
+	.jasper-bb#{$jasper}{
+		border-bottom:#{$jasper}px solid $jasper-border-1;
 		&.dashed{
 			border-bottom-style: dashed;
 		}
 	}
-	.jasper-bl#{$unc}{
-		border-left:#{$unc}px solid $jasper-border-1;
+	.jasper-bl#{$jasper}{
+		border-left:#{$jasper}px solid $jasper-border-1;
 		&.dashed{
 			border-left-style: dashed;
 		}
 	}
-	.jasper-br#{$unc}{
-		border-right: #{$unc}px solid $jasper-border-1;
+	.jasper-br#{$jasper}{
+		border-right: #{$jasper}px solid $jasper-border-1;
 		&.dashed{
 			border-right-style: dashed;
 		}
 	}
-	$unc : $unc + 1 ;
+	$jasper : $jasper + 1 ;
 }
 
 /* 边框(边线、实线、虚线) - end */

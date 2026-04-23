@@ -82,14 +82,14 @@
 			popupConfirm() {
 				this.isAgree = true
         //判断函数是否存在
-        if(uni.$unc.isFn(retryFun)){
+        if(uni.$jasper.isFn(retryFun)){
           retryFun()
         }
 			},
 			popup(Fun) {
 				this.needPopupAgreements = true
 				this.$nextTick(() => {
-					if (uni.$unc.isFn(Fun)) {
+					if (uni.$jasper.isFn(Fun)) {
 						retryFun = Fun
 					}
 					this.$refs.popupAgreement.open()

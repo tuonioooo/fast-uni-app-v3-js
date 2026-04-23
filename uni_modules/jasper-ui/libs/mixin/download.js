@@ -29,7 +29,7 @@ export default {
 				success: async (res) => {
 					if (res.statusCode == 200) {
 						console.log(`下载文件成功=${JSON.stringify(res)}`);
-						let newTempFilePath = await uni.$unc.rename(res.tempFilePath, "/" + this.filename);
+						let newTempFilePath = await uni.$jasper.rename(res.tempFilePath, "/" + this.filename);
 						this.tempFilePath = newTempFilePath ?? res.tempFilePath;
 						console.log(`下载临时源文件=${res.tempFilePath}, 重命名临时文件=${newTempFilePath}`);
 						this.downloadSuccess = true;
@@ -62,7 +62,7 @@ export default {
 		},
 		getFilename(url){
 			try{
-				let md5 = uni.$unc.md5(url);
+				let md5 = uni.$jasper.md5(url);
 				return "share-" + md5 + ".mp4"; //获取文件名称
 			}catch(e){
 				console.log("getFilename = >", e);

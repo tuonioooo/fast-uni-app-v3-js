@@ -25,25 +25,25 @@ export default {
 		return {}
 	},
 	onLoad() {
-		// getRect挂载到$unc上，因为这方法需要使用in(this)，所以无法把它独立成一个单独的文件导出
-		this.$unc.getRect = this.$uncGetRect
+		// getRect挂载到$jasper上，因为这方法需要使用in(this)，所以无法把它独立成一个单独的文件导出
+		this.$jasper.getRect = this.$jasperGetRect
 	},
 	created() {
-		// 组件当中，只有created声明周期，为了能在组件使用，故也在created中将方法挂载到$unc
-		this.$unc.getRect = this.$uncGetRect
+		// 组件当中，只有created声明周期，为了能在组件使用，故也在created中将方法挂载到$jasper
+		this.$jasper.getRect = this.$jasperGetRect
 	},
 	computed: {
-		$unc() {
+		$jasper() {
 			// #ifndef APP-NVUE
 			// 在非nvue端，移除props，http，mixin等对象，避免在小程序setData时数据过大影响性能
-			return uni.$unc.deepMerge(uni.$unc, {
+			return uni.$jasper.deepMerge(uni.$jasper, {
 				props: undefined,
 				http: undefined,
 				mixin: undefined
 			})
 			// #endif
 			// #ifdef APP-NVUE
-			return uni.$unc
+			return uni.$jasper
 			// #endif
 		},
 		/**
@@ -94,7 +94,7 @@ export default {
 		// 查询节点信息
 		// 目前此方法在支付宝小程序中无法获取组件跟接点的尺寸，为支付宝的bug(2020-07-21)
 		// 解决办法为在组件根部再套一个没有任何作用的view元素
-		$uncGetRect(selector, all) {
+		$jasperGetRect(selector, all) {
 			return new Promise((resolve) => {
 				uni.createSelectorQuery()
 					.in(this)[all ? 'selectAll' : 'select'](selector)
@@ -116,7 +116,7 @@ export default {
 			// 将父组件this中对应的参数，赋值给本组件(uv-radio的this)的parentData对象中对应的属性
 			// 之所以需要这么做，是因为所有端中，头条小程序不支持通过this.parent.xxx去监听父组件参数的变化
 			// 此处并不会自动更新子组件的数据，而是依赖父组件uv-radio-group去监听data的变化，手动调用更新子组件的方法去重新获取
-			this.parent = this.$unc.$parent.call(this, parentName)
+			this.parent = this.$jasper.$parent.call(this, parentName)
 			if (this.parent.children) {
 				// 如果父组件的children不存在本组件的实例，才将本实例添加到父组件的children中
 				this.parent.children.indexOf(this) === -1 && this.parent.children.push(this)

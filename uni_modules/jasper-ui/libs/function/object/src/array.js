@@ -17,14 +17,14 @@ export function combine() {
  * @param {Object} value
  */
 export function parseArray (value , spliter = ',') {
-	if (uni.$unc.isNull(value)) {
+	if (uni.$jasper.isNull(value)) {
 		return [] ;
 	}
-	if (uni.$unc.isArray(value)) {
+	if (uni.$jasper.isArray(value)) {
 		return clone(value) ;
 	}
 	value += "" ;
-	return uni.$unc.isArrayStr(value) ? JSON.parse(value) : value.split(spliter) ;
+	return uni.$jasper.isArrayStr(value) ? JSON.parse(value) : value.split(spliter) ;
 }
 /**
  * 根据范围值的大小 创建一个范围数组
@@ -35,7 +35,7 @@ export function parseArray (value , spliter = ',') {
  * @param {*} closed 	是否闭合 默认闭合
  */
 export function createRangeArray(start, end, closed=true){
-	if(!uni.$unc.isInt(start) || !uni.$unc.isInt(start)){
+	if(!uni.$jasper.isInt(start) || !uni.$jasper.isInt(start)){
 		return []
 	}
 	if(start < 0 || end <0){

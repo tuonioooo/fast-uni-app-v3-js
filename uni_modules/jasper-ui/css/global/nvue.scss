@@ -480,24 +480,24 @@ $p: 200;
   border-right: 1px solid $jasper-border-1;
 }
 
-$unc: 2;
-@while $unc <= 10 {
-  .jasper-bd#{$unc} {
-    border: #{$unc}px solid $jasper-border-1;
+$jasper: 2;
+@while $jasper <= 10 {
+  .jasper-bd#{$jasper} {
+    border: #{$jasper}px solid $jasper-border-1;
   }
-  .jasper-bt#{$unc} {
-    border-top: #{$unc}px solid $jasper-border-1;
+  .jasper-bt#{$jasper} {
+    border-top: #{$jasper}px solid $jasper-border-1;
   }
-  .jasper-bb#{$unc} {
-    border-bottom: #{$unc}px solid $jasper-border-1;
+  .jasper-bb#{$jasper} {
+    border-bottom: #{$jasper}px solid $jasper-border-1;
   }
-  .jasper-bl#{$unc} {
-    border-left: #{$unc}px solid $jasper-border-1;
+  .jasper-bl#{$jasper} {
+    border-left: #{$jasper}px solid $jasper-border-1;
   }
-  .jasper-br#{$unc} {
-    border-right: #{$unc}px solid $jasper-border-1;
+  .jasper-br#{$jasper} {
+    border-right: #{$jasper}px solid $jasper-border-1;
   }
-  $unc: $unc + 1 ;
+  $jasper: $jasper + 1 ;
 }
 
 .jasper-bd-dashed {

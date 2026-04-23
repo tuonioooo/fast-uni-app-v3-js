@@ -45,11 +45,11 @@ console.log(md5_3); // a7bac2239fcdcb3a067903d8077c4a07
 - `encryptDES(content, key)`
 - `decryptDES(content, key)`
 
-安装 `jasper-ui` 插件后，可以通过 `uni.$unc` 直接调用：
+安装 `jasper-ui` 插件后，可以通过 `uni.$jasper` 直接调用：
 
 ```js
-const encrypted = uni.$unc.encryptAES('12345678', '12345678', '12345678');
-const decrypted = uni.$unc.decryptAES(encrypted, '12345678', '12345678');
+const encrypted = uni.$jasper.encryptAES('12345678', '12345678', '12345678');
+const decrypted = uni.$jasper.decryptAES(encrypted, '12345678', '12345678');
 ```
 
 页面示例可参考 [pages/index/index.vue](../pages/index/index.vue)。

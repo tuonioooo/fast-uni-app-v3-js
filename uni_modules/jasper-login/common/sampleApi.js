@@ -12,7 +12,7 @@ export function sendSmsApi({phoneNumber}){
         //延时一秒,模拟联网
         setTimeout(function() {
             try {
-                const smsCode = uni.$unc.randomDigitString(4);
+                const smsCode = uni.$jasper.randomDigitString(4);
                 uni.setStorageSync('smsInfo', {
                     smsCode,
                     phoneNumber

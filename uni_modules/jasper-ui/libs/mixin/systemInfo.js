@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            systemInfo: uni.$unc.getSystemInfoSync(),
+            systemInfo: uni.$jasper.getSystemInfoSync(),
             cssSafeAreaInsetBottom: -1,
             defaultNavHeight: 44,
             gap: 10,
@@ -121,7 +121,7 @@ export default {
         }
     },
     mounted() {
-        if (!this.systemInfo) this.systemInfo = uni.$unc.getSystemInfoSync(); // 注意：uni.$unc.getSystemInfoSync() 是 UniApp 的 API
+        if (!this.systemInfo) this.systemInfo = uni.$jasper.getSystemInfoSync(); // 注意：uni.$jasper.getSystemInfoSync() 是 UniApp 的 API
         //#ifdef MP-WEIXIN
         console.log(`[安全区域top=${this.safeAreaTop},导航高度=${this.windowNavHeight},状态栏高度=${this.statusBarHeight},微信胶囊信息=${JSON.stringify(this.wxMenuButtonBoudingInfo)}]`)
         //#endif

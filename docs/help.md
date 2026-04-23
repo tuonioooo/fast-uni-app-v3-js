@@ -1,6 +1,6 @@
 # 帮助文档
 
-本文档用于快速定位当前脚手架内已经集成的能力，以及对应的入口文件。
+本文档用于快速定位当前脚手架中已经集成的能力，以及对应的入口文件。
 
 ## 快速入口
 
@@ -11,117 +11,51 @@
 - 请求拦截器: [util/request/requestInterceptors.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/util/request/requestInterceptors.js)
 - 响应拦截器: [util/request/responseInterceptors.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/util/request/responseInterceptors.js)
 - 全局常量插件: [common/plugins/constants.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/common/plugins/constants.js)
-- Mock 数据: [mock/mock.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/mock/mock.js)
-- 示例接口: [api/sample.ts](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/api/sample.ts)
-- Mock 接口调用: [api/mock/mock.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/api/mock/mock.js)
+- 业务接口示例: [api/sample.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/api/sample.js)
+- Mock 统一入口: [mock/index.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/mock/index.js)
+- Mock 路由定义: [mock/mock.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/mock/mock.js)
+- Mock 处理器: [mock/handler.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/mock/handler.js)
+- Mock 静态数据: [mock/data/index.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/mock/data/index.js)
 
-## 环境变量配置
+## 环境变量
 
-uni-app 默认项目（HBuilderX 创建）配置环境变量有以下方式：
+当前项目使用 `.env` 系列文件管理环境变量：
 
----
-
-### 方式一：`.env` 文件（推荐）
-
-在项目根目录创建对应文件：
-
-```
-.env                # 所有环境都加载
-.env.development    # 开发环境
-.env.production     # 生产环境
+```text
+.env
+.env.development
+.env.production
 ```
 
-文件内容，变量名**必须以 `VITE_` 开头**才能在代码里访问：
+只有 `VITE_` 前缀的变量会暴露给客户端代码。例如：
 
 ```bash
-# .env.development
-VITE_BASE_URL=https://dev-api.example.com
-VITE_APP_NAME=我的应用-dev
-
-# .env.production  
-VITE_BASE_URL=https://api.example.com
-VITE_APP_NAME=我的应用
+VITE_BASE_URL=http://127.0.0.1:9101
+VITE_STATIC_HOST=http://127.0.0.1:9101
+VITE_USE_MOCK=on
 ```
 
-代码里使用：
+代码中通过 `import.meta.env` 读取：
 
-```javascript
-const baseUrl = import.meta.env.VITE_BASE_URL
-const appName = import.meta.env.VITE_APP_NAME
+```js
+const baseUrl = import.meta.env.VITE_BASE_URL;
+const staticHost = import.meta.env.VITE_STATIC_HOST;
 ```
 
----
+注意：
 
-### 方式二：uni-app 内置环境判断
+- `.env` 文件放在项目根目录
+- 修改 `.env.*` 后需要重启运行
 
-不需要配置，直接用：
+## 当前已接入内容
 
-```javascript
-// 判断开发/生产
-if (process.env.NODE_ENV === 'development') {
-    console.log('开发环境')
-}
+### 基础能力
 
-if (process.env.NODE_ENV === 'production') {
-    console.log('生产环境')
-}
-```
-
----
-
-### 方式三：条件编译（平台区分）
-
-```javascript
-// #ifdef H5
-console.log('只在H5执行')
-// #endif
-
-// #ifdef MP-WEIXIN
-console.log('只在微信小程序执行')
-// #endif
-
-// #ifdef APP-PLUS
-console.log('只在App执行')
-// #endif
-```
-
----
-
-### 实际项目常用写法
-
-封装一个 `config.js` 统一管理：
-
-```javascript
-// src/config/index.js
-const isDev = import.meta.env.DEV  // vite 内置，开发环境为 true
-
-const config = {
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    appName: import.meta.env.VITE_APP_NAME,
-    isDev,
-}
-
-export default config
-```
-
----
-
-### 注意事项
-
-- `.env` 文件放在**项目根目录**，和 `pages.json` 同级
-- 只有 `VITE_` 前缀的变量才会暴露给客户端代码，避免敏感信息泄露
-- HBuilderX 修改 `.env` 文件后需要**重新运行**才生效
-
-
-## 当前项目已接入内容
-
-### 组件与基础库
-
-- `uv-ui`：基础 UI 组件库
-- `jasper-ui`：扩展组件、工具函数、加密与时间能力
-- `Pinia`：状态管理
-- `dayjs`：日期处理
-- `crypto-js`：MD5、AES、DES 能力
+- `uv-ui`
+- `jasper-ui`
+- `Pinia`
+- `dayjs`
+- `crypto-js`
 
 ### 页面示例
 
@@ -135,50 +69,35 @@ export default config
 - [stores/sample.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/stores/sample.js)
 - [stores/counter.js](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/stores/counter.js)
 
-## 文档目录
+## Mock
 
-### 接口与请求
+当前仓库的 Mock 结构如下：
+
+- `api/sample.js` 负责业务 API 暴露
+- `mock/index.js` 负责统一 `callMock` 调用
+- `mock/handler.js` 负责分页与响应包装
+- `mock/data/index.js` 负责静态数据
+- `mock/mock.js` 负责 `vite-plugin-mock` 路由定义
+
+适用场景：
+
+- H5 开发模式下，优先通过 `vite-plugin-mock` 命中 `/api/**`
+- HBuilderX / App / 小程序场景下，直接使用 `api/sample.js` 的本地 mock 链路
+
+## 文档目录
 
 - [接口参数配置](api.md)
 - [Mock 文档](mock.md)
-
-### 样式与构建
-
 - [PostCSS 文档](postcss.md)
 - [Sass 迁移说明](sass.md)
-
-### 工具能力
-
 - [时间工具](time.md)
 - [MD5 / crypto-js](md5.md)
-
-### 其他
-
 - [常见问题](problem.md)
+- [Husky + Commitlint + lint-staged 配置指南](./husky.md)
 - [更新日志](changelog/changelog.md)
 
-## 项目说明
+## 其它说明
 
-### 请求封装
-
-`util/request/index.js` 中统一设置了全局 `baseURL`，并挂载了请求与响应拦截器。
-
-请求配置支持通过 `custom` 扩展控制行为，具体见 [接口参数配置](api.md)。
-
-### Mock
-
-当前仓库保留了 `mock/mock.js` 和 `api/mock/mock.js` 两层示例：
-
-- `mock/mock.js` 负责定义 mock 数据
-- `api/mock/mock.js` 负责封装 mock 接口调用
-
-### 加密
-
-当前项目统一使用 `crypto-js`，不要再使用旧的 `js-md5` 文档或示例。
-
-如果只做摘要，直接用 `CryptoJS.MD5`；如果要加解密，可直接使用 `uni.$unc.encryptAES` / `uni.$unc.decryptAES`。
-
-### uni_modules
-
-- jasper-ui 文档: [uni_modules/jasper-ui/readme.md](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/uni_modules/jasper-ui/readme.md)
-- jasper-login 文档: [uni_modules/jasper-login/readme.md](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/uni_modules/jasper-login/readme.md)
+- 请求层统一入口在 `util/request`
+- 加密能力统一使用 `crypto-js`
+- 登录与主题相关扩展可参考 `uni_modules/jasper-ui` 和 `uni_modules/jasper-login`

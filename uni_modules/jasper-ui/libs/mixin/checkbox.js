@@ -19,7 +19,7 @@ export default {
 			return this.checked ? '取消全选' : '全选';
 		},
 		activeColor(){
-			return uni.$unc.theme['$jasper-primary']; // checkbox激活时的颜色 
+			return uni.$jasper.theme['$jasper-primary']; // checkbox激活时的颜色 
 		}
 	},
 	methods: {
@@ -45,7 +45,7 @@ export default {
 		 * @param {Object} data    当组件checkbox数据列表
 		 */
 		onChange(checked, data) {
-			if(!uni.$unc.isArray(data) || data.length === 0) return;
+			if(!uni.$jasper.isArray(data) || data.length === 0) return;
 			var items = data;
 			for (var i = 0, lenI = items.length; i < lenI; ++i) {
 				const item = items[i]
@@ -75,7 +75,7 @@ export default {
 		 * @param {Array} list 定义于主组件中   查找列表中checked属性为true的元素
 		 */
 		permitDel(list){
-			if(!uni.$unc.isArray(list)) return false;
+			if(!uni.$jasper.isArray(list)) return false;
 			return list.some(item => item.checked);
 		}
 	}

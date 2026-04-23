@@ -62,25 +62,25 @@ onMounted(() => {
   console.log(`uni.$uv.sys()=${uni.$uv.sys()}`);
   console.log(`uni.$uv.trim(' abc ')=${uni.$uv.trim(' abc ')}`);
   console.log(`uni.$uv.random(1, 3)=${uni.$uv.random(1, 3)}`);
-  console.log(`uni.$unc.uuid(8)=${uni.$unc.uuid(8)}`);
+  console.log(`uni.$jasper.uuid(8)=${uni.$jasper.uuid(8)}`);
 });
 
 const handleEncrypt = () => {
-  jiamiValue.value = uni.$unc.encryptAES('12345678', '12345678', '12345678');
+  jiamiValue.value = uni.$jasper.encryptAES('12345678', '12345678', '12345678');
 };
 
 const handleTime = () => {
   const date = new Date();
-  uni.$unc.timeByDayjs.setLocale('de');
+  uni.$jasper.timeByDayjs.setLocale('de');
 
-  console.log(uni.$unc.timeByDayjs.getLocale());
+  console.log(uni.$jasper.timeByDayjs.getLocale());
   console.log(dayjs(date).format());
 
   timeObj.value = {
-    当前时间加1天: uni.$unc.calcDate(date, 1),
-    获取指定时间的星期几: uni.$unc.getWeek(date),
-    时间签名1: uni.$unc.formatDateToSign(new Date('2024-11-29')),
-    时间签名2: uni.$unc.timeByDayjs.getRelativeTime(new Date('2024-11-29')),
+    当前时间加1天: uni.$jasper.calcDate(date, 1),
+    获取指定时间的星期几: uni.$jasper.getWeek(date),
+    时间签名1: uni.$jasper.formatDateToSign(new Date('2024-11-29')),
+    时间签名2: uni.$jasper.timeByDayjs.getRelativeTime(new Date('2024-11-29')),
   };
 };
 </script>

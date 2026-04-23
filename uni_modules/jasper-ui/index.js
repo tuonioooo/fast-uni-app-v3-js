@@ -13,7 +13,7 @@ import * as config from "./libs/config/index.js" ;
 /** dayjs日期工具类 */
 import timeByDayjs from "./libs/function/helpers/src/timeByDayjs.js";
 
-const $unc = {
+const $jasper = {
 	...config,
 	...validate,
 	...objects,
@@ -57,14 +57,14 @@ const install = (app, config) => {
 	if (app.config && app.config.globalProperties) {
 		// Vue 3
 		mode = 'v3';
-		app.config.globalProperties.$unc = $unc;
+		app.config.globalProperties.$jasper = $jasper;
 	} else if (app.prototype) {
 		// Vue 2
 		mode = 'v2';
-		app.prototype.$unc = $unc;
+		app.prototype.$jasper = $jasper;
 	}
 	// 挂载到uni对象上
-	uni.$unc = $unc;	//全平台支持
+	uni.$jasper = $jasper;	//全平台支持
 	console.log('%c【jasper-ui安装成功,当前环境是' + mode + '编译模式】', 'color:green; font-weight:bold;');
 }
 

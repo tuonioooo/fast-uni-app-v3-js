@@ -154,3 +154,6 @@ chore: 升级 eslint 到 8.x
 1. **`.env.local` 不要提交**：已在 `.gitignore` 中忽略，每位开发者本地复制 `.env.example` 自行填写。
 2. **uni_modules 三方库不做 lint**：已在 `.eslintignore` 和 `.prettierignore` 中排除。
 3. **首次 format 会改很多文件**：建议单独一个 commit 提交格式化结果，与功能代码分开，方便 code review。
+
+
+第一阶段已经完成，由于是HBuilderX 创建的项目，所以不需要命令脚本启动命令

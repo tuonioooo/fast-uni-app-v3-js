@@ -121,10 +121,10 @@ export default {
       // #endif
     },
     themeColor(){
-      return uni.$unc.theme['$jasper-primary'];
+      return uni.$jasper.theme['$jasper-primary'];
     },
     themeInverseColor(){
-      return uni.$unc.theme['$jasper-primary-inverse'];
+      return uni.$jasper.theme['$jasper-primary-inverse'];
     },
     btnStyle(){
       return this.disabled ? {
@@ -151,9 +151,9 @@ export default {
       return this.smsTips && this.sending ? this.smsTips : '获取验证码';
     },
     checkPhone() {
-      if(!uni.$unc.isMobile(uni.$unc.trim(this.phone, 'all'))){
+      if(!uni.$jasper.isMobile(uni.$jasper.trim(this.phone, 'all'))){
         // 显示警告提示
-        uni.$unc.showToast('请输入正确的手机号');
+        uni.$jasper.showToast('请输入正确的手机号');
         return false;
       } else {
         return true;
@@ -203,7 +203,7 @@ export default {
     //#ifdef APP-PLUS
 
     // 是否有网络
-    let _hasNetwork = await uni.$unc.hasNetwork();
+    let _hasNetwork = await uni.$jasper.hasNetwork();
     if(!_hasNetwork) return
 
     if (this.type == "univerify") {
@@ -308,7 +308,7 @@ export default {
     async getCode(again) {
       try{
         // 是否有网络
-        let _hasNetwork = await uni.$unc.hasNetwork();
+        let _hasNetwork = await uni.$jasper.hasNetwork();
         if(!_hasNetwork){
           uni.showToast({title: '网络异常，请检查网络连接后重试', icon: 'none'})
           return;
@@ -319,7 +319,7 @@ export default {
           if (this.needAgreements && !this.agree) {
             return this.$refs.agreements.popup(this.getCode)
           }
-          let phoneNumber = uni.$unc.trim(this.phone, 'all');// 去掉中间的空格
+          let phoneNumber = uni.$jasper.trim(this.phone, 'all');// 去掉中间的空格
           //跳转到验证码的页面
           this.toSmsPage(phoneNumber);
           this.emitSmsEvent();
@@ -329,8 +329,8 @@ export default {
           // 向指定手机号发送验证码短信
           const res = await sendSmsApi({phoneNumber});
           uni.$constants.RESULT_SUCCESS_CODE === res.code
-              ? uni.$unc.toast('验证码已发送')
-              : uni.$unc.showToast(res.msg)
+              ? uni.$jasper.toast('验证码已发送')
+              : uni.$jasper.showToast(res.msg)
           //演示环境 传递演示验证码
           uni.$emit('login-smscode-event', {
             mockCode: res.data,
@@ -338,7 +338,7 @@ export default {
           // 通知验证码组件内部开始倒计时
           this.$refs.bCodeRef.start();
         } else {
-          uni.$unc.toast('倒计时结束后再发送');
+          uni.$jasper.toast('倒计时结束后再发送');
         }
       } finally {
         uni.hideLoading();
@@ -356,18 +356,18 @@ export default {
       const userInfo = res;
       userInfo.phone = phoneNumber;
       // 将user保存到vuex的state
-      uni.$unc.userStore.dispatch('add', userInfo);
+      uni.$jasper.userStore.dispatch('add', userInfo);
       // 添加token到缓存中
-      uni.setStorageSync(uni.$unc.getValue("tokenKey"), userInfo.token);
+      uni.setStorageSync(uni.$jasper.getValue("tokenKey"), userInfo.token);
       // 添加过期token到缓存中
-      uni.setStorageSync(uni.$unc.getValue("tokenExpiredKey"), userInfo.tokenExpired);
+      uni.setStorageSync(uni.$jasper.getValue("tokenExpiredKey"), userInfo.tokenExpired);
       // 添加accountId 到 缓存
       uni.setStorageSync('miliqk-accountId', userInfo.accountId);
       //云端同步书架数据
       //this.$syncBookshelfToCloud();
       //云端同步书架历史数据
       //this.$syncHistoryToCloud();
-      uni.$unc.showToast('登录成功');
+      uni.$jasper.showToast('登录成功');
       callback(); //执行callback函数
       this.back(); // 关闭登录窗口抽屉
     },

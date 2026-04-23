@@ -36,7 +36,7 @@ function muuid(len, radix) {
  * @description 标准的uuid生成方法
  * @param len
  * @param binary
- * @example uni.$unc.uuid();
+ * @example uni.$jasper.uuid();
  * @return {string}
  */
 function uuid(len, binary) {

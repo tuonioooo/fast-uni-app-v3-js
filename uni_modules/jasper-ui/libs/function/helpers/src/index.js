@@ -99,8 +99,8 @@ function showModal(config={}){
 	let _config = {
 		title : '提示'
 	};
-	if(!isNull(uni.$unc.theme['$jasper-primary'])){
-		_config.confirmColor = uni.$unc.theme['$jasper-primary']
+	if(!isNull(uni.$jasper.theme['$jasper-primary'])){
+		_config.confirmColor = uni.$jasper.theme['$jasper-primary']
 	}
 	uni.showModal(Object.assign(_config , config));
 }
@@ -114,7 +114,7 @@ function parsePx(value , fatherSize ){
 	if (isNull(value) || value == 'auto') {
 		return "" ;
 	}
-	let { width , height } = uni.$unc.getSafeArea() ;
+	let { width , height } = uni.$jasper.getSafeArea() ;
 	fatherSize = fatherSize || width ;
 	value = value + '' ;
 	let v = parseFloat(value) ;

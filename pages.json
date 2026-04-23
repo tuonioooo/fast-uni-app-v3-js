@@ -32,6 +32,39 @@
       }
     }
   ],
+  "subPackages": [
+    {
+      "root": "uni_modules/jasper-login",
+      "pages": [
+        {
+          "path": "pages/login/login-withoutpwd",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/login/login-withpwd",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/login/login-smscode",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/agreements/agreement",
+          "style": {}
+        },
+        {
+          "path": "pages/agreements/privacy",
+          "style": {}
+        }
+      ]
+    }
+  ],
   "tabBar": {
     "color": "#333",
     "selectedColor": "#333",

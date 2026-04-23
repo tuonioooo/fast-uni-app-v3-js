@@ -20,12 +20,12 @@ async function _saveImageToPhotosAlbum(src, successMsg = '图片已保存') {
 			}
 		}
 		console.log(albumRes, "----saveImageToPhotosAlbum:ok-----")
-		uni.$unc.showToast(albumRes.errMsg === 'saveImageToPhotosAlbum:ok' ? successMsg : '图片保存失败');
+		uni.$jasper.showToast(albumRes.errMsg === 'saveImageToPhotosAlbum:ok' ? successMsg : '图片保存失败');
 	}
 	// #endif
 
 	// #ifdef H5
-	uni.$unc.showToast('因为H5需要配置白名单,暂不开放');
+	uni.$jasper.showToast('因为H5需要配置白名单,暂不开放');
 	// #endif
 	uni.hideLoading();
 }

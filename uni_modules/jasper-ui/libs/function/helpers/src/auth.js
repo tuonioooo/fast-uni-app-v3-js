@@ -50,7 +50,7 @@ function getCode(provider) {
 			authService.authorize((res) => {
 				resolve(res.code)
 			}, function(err) {
-				if (uni.$unc.isObject(err)) {
+				if (uni.$jasper.isObject(err)) {
 					let {innerCode , code , message} = err ;
 					err.cancel = innerCode == -2 || innerCode == -4 || code == -2 || (message && message.indexOf("取消") > -1) ;
 				}

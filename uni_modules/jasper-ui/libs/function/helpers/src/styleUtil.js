@@ -62,7 +62,7 @@ function addStyle(customStyle, target = 'object') {
  * @param {string|number} value 需要添加单位的值
  * @param {string} unit 添加的单位名 比如px
  */
-function addUnit(value = 'auto', unit = uni?.$unc?.config?.unit ?? 'px') {
+function addUnit(value = 'auto', unit = uni?.$jasper?.config?.unit ?? 'px') {
 	value = String(value)
 	// 内置验证规则中的number判断是否为数值
 	return isNumber(value) ? `${value}${unit}` : value

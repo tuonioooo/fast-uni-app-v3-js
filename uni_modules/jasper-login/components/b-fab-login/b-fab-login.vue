@@ -259,7 +259,7 @@ export default {
       console.log(`当前登录方式=[${type}]`);
 
       // 是否有网络
-      let _hasNetwork = await uni.$unc.hasNetwork();
+      let _hasNetwork = await uni.$jasper.hasNetwork();
       if (!_hasNetwork) {
         return uni.showToast({title: '网络异常，请检查网络连接后重试', icon: 'none'})
       }

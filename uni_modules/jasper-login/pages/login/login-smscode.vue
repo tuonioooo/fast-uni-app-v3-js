@@ -67,7 +67,7 @@
 				// #endif
 			},
 			rightPhone() {
-				return uni.$unc.isMobile(this.phone);
+				return uni.$jasper.isMobile(this.phone);
 			},
 			customPhone() {
 				let customPhone = "";
@@ -119,11 +119,11 @@
 					verificationCode : this.code
 				});
 				if(uni.$constants.RESULT_SUCCESS_CODE === res.code) {
-					uni.$unc.toast(res.msg)
+					uni.$jasper.toast(res.msg)
 					//登录
 					this.login();
 				}else{
-					uni.$unc.toast(res.msg);
+					uni.$jasper.toast(res.msg);
 					//清除验证码
 					this.code = '';
 					this.error= res.msg;
@@ -135,11 +135,11 @@
 				// 短信登陆
 				const { phone, code } = this;
 				if(!this.rightPhone) {
-					uni.$unc.showToast('手机号不正确');
+					uni.$jasper.showToast('手机号不正确');
 					return ;
 				} else if(!/^\d{4}$/.test(code)) {
 					// 短信验证码必须是4位数字
-					uni.$unc.showToast('短信验证码必须是4位数字');
+					uni.$jasper.showToast('短信验证码必须是4位数字');
 					return ;
 				}
 				// 短信登录

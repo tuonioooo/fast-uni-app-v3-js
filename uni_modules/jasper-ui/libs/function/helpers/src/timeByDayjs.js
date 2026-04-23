@@ -15,7 +15,7 @@ const timeByDayjs = {
      * @description 外部可以调用此方法 来设置日期语言
      * @example
      *      import 'dayjs/locale/de';              // 引入外文
-     *      uni.$unc.timeByDayjs.setLocale('de');  // 设置语言
+     *      uni.$jasper.timeByDayjs.setLocale('de');  // 设置语言
      * @param {string | Object} locale 语言代码（如 'en', 'zh-cn'）
      */
     setLocale(locale) {
