@@ -128,3 +128,93 @@ fix(request): 修复响应拦截器悬空问题
 docs: 更新 Phase1 接入说明
 chore: 升级 eslint 到 8.x
 ```
+
+是的，`"prepare": "husky"` 这个配置会触发 Husky 的安装和初始化，并且与 `lint-staged` 配合使用，以在提交代码前执行指定的任务。
+
+### 解释流程
+
+1. **Husky 的 `prepare` 脚本**：
+   在 `package.json` 文件中，`"prepare": "husky"` 通常用于初始化 Husky 和其相关钩子。具体来说，`husky` 会在 `git` 仓库中创建一个 `.husky/` 目录，并配置钩子文件，如 `pre-commit`、`commit-msg` 等。这个脚本通常在安装时运行（比如通过 `npm install` 或 `yarn install`）。
+
+   ```json
+   "prepare": "husky"
+   ```
+
+2. **`lint-staged` 配合 Husky 使用**：
+   `lint-staged` 通过指定哪些文件需要在提交前进行处理，来确保代码风格一致性。例如，你的配置：
+
+   ```json
+   "lint-staged": {
+     "*.{js,vue}": [
+       "prettier --write",   // 先格式化代码
+       "eslint --fix"        // 然后修复 ESLint 问题
+     ],
+     "*.{json,md,scss,css,html}": [
+       "prettier --write"    // 仅格式化这些文件
+     ]
+   }
+   ```
+
+   这会在 Git 提交前自动执行以下操作：
+
+   * 对 `.js` 和 `.vue` 文件，先通过 Prettier 格式化代码，再用 ESLint 修复代码问题。
+   * 对 `.json`、`.md`、`.scss`、`.css` 和 `.html` 文件，只有 Prettier 格式化，不需要 ESLint 检查。
+
+### 整体工作流程
+
+1. **`npm install` 或 `yarn install` 时执行 `husky` 的 `prepare` 脚本**，这会初始化 Husky 钩子并安装相关配置。
+
+2. **在你运行 `git commit` 时，Husky 会触发 pre-commit 钩子**，然后 `lint-staged` 会接管处理，执行对应的命令（如 `prettier --write` 和 `eslint --fix`）。
+
+   * `lint-staged` 会查找暂存区（staged）中的文件，并根据规则对文件进行格式化和修复。
+   * 对于 `.js` 和 `.vue` 文件，先格式化代码再修复。
+   * 对于其他文件类型（如 `.json`、`.md`、`.scss` 等），仅运行 Prettier 格式化。
+
+### 需要注意的点：
+
+1. **Husky 钩子**：确保你已经正确设置了 Husky 钩子。通常，`pre-commit` 钩子会指向 `lint-staged`，像这样：
+
+   ```bash
+   npx husky add .husky/pre-commit "npx lint-staged"
+   ```
+
+   这个钩子会在提交时触发 `lint-staged`，执行你在配置中的任务。
+
+2. **安装依赖**：确保 `husky` 和 `lint-staged` 都已正确安装，并且 `prettier` 和 `eslint` 的配置文件（如 `.prettierrc` 和 `.eslintrc.js`）已正确设置。
+
+### 示例配置：
+
+```json
+{
+  "scripts": {
+    "prepare": "husky",
+    "lint": "eslint . --fix",
+    "format": "prettier --write ."
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,scss,css,html}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
+  }
+}
+```
+
+### 解释：
+
+* `prepare`：执行 `husky` 安装和初始化。
+* `lint-staged`：在提交前格式化并修复代码。
+* `husky` 钩子：在 `git commit` 时触发 `lint-staged`。
+
+### 总结：
+
+* **是的，`"prepare": "husky"` 会触发并初始化 Husky**，然后根据 `lint-staged` 的配置，在提交前自动运行代码格式化和修复工具。
+* 确保 Husky 和 `lint-staged` 配置正确，`lint-staged` 会在 `pre-commit` 钩子中执行你配置的命令，如 `prettier --write` 和 `eslint --fix`。

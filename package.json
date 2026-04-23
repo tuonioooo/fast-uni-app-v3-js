@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .js,.vue --ignore-pattern .eslintignore",
-    "lint:fix": "eslint . --ext .js,.vue --ignore-pattern .eslintignore --fix",
+    "lint": "eslint . --ext .js,.vue",
+    "lint:fix": "eslint . --ext .js,.vue --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "prepare": "husky"
@@ -33,8 +33,8 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "eslint --fix --ignore-pattern .eslintignore",
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ],
     "*.{json,md,scss,css,html}": [
       "prettier --write"
