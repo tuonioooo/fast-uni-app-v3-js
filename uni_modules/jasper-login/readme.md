@@ -336,6 +336,28 @@ export default {
 
 这样页面和组件层不用改，替换成本最低。
 
+#### vue-cli / CLI 命令脚本参考
+
+如果宿主项目不是纯 `HBuilderX` 运行模式，而是 `vue-cli / CLI` 驱动方式，可以在宿主工程的 `package.json` 中补齐标准 `dev:*`、`build:*` 命令。
+
+当前仓库根目录已经保留了一份可直接参考的脚本模板：
+
+- [script.json](./docs/script.json)
+
+可按宿主项目实际场景保留需要的平台命令，例如：
+
+- `dev:h5`
+- `build:h5`
+- `dev:mp-weixin`
+- `build:mp-weixin`
+- 如有 App 场景，可增加 `dev:app`、`build:app`
+
+这部分属于宿主工程脚本配置，不属于 `jasper-login` 模块内部能力；模块本身只需要保证：
+
+- 登录页面和登录流程可正常工作
+- 宿主能通过安装配置注入正式服务
+- 宿主能按自己的运行方式组织脚本和构建命令
+
 #### 宿主通过配置注入 API
 
 如果你不想直接改模块内部的 `services/auth-service.js`，可以在安装插件时注入自己的服务实现：
