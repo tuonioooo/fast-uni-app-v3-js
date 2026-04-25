@@ -1,133 +1,141 @@
+import {
+    createSystemInfoState,
+    getMainContentContainNavStyle,
+    getMainContentStyle,
+    getMainContentStyleUseGap,
+    getMainTop,
+    getSafeAreaBottom,
+    getSafeAreaTop,
+    getStatusBarHeight,
+    getWindowNavAndStatusBarHeight,
+    getWindowTop,
+    getWindowWidth,
+    getWxMenuButtonBottomStyle,
+    getWxMenuButtonBoundingInfo
+} from '../function/helpers/system-info-core.js';
+
+/**
+ * Options API 系统信息 mixin。
+ *
+ * 适用场景：
+ * 1. 仍然使用 `data / computed / methods` 的页面或组件
+ * 2. 不方便迁移到 `setup()` 的历史页面
+ *
+ * 暴露字段与 `libs/hooks/useSystemInfo.js` 保持一致，避免 Options API
+ * 页面与 Composition API 页面在同一批系统信息字段上出现命名差异。
+ */
 export default {
+    /**
+     * 初始化系统信息状态。
+     */
     data() {
-        return {
-            systemInfo: uni.$jasper.getSystemInfoSync(),
-            cssSafeAreaInsetBottom: -1,
-            defaultNavHeight: 44,
-            gap: 10,
-        };
+        return createSystemInfoState();
     },
     computed: {
         // #ifdef MP-WEIXIN
+        /**
+         * 微信小程序胶囊按钮信息。
+         */
         wxMenuButtonBoudingInfo() {
-            return uni.getMenuButtonBoundingClientRect();
+            return getWxMenuButtonBoundingInfo();
         },
+        /**
+         * 基于微信胶囊按钮生成的顶部 padding 样式。
+         */
         wxMenuButtonBottomStyle() {
-            const wxMenuButtonBottom = this.wxMenuButtonBoudingInfo?.bottom ?? 0;
-            return {
-                paddingTop: `${wxMenuButtonBottom}px`
-            };
+            return getWxMenuButtonBottomStyle(this.wxMenuButtonBoudingInfo);
         },
         // #endif
-        // 中心内容区域高度含间隙值Style
+        /**
+         * 主内容区域样式，微信小程序额外保留一个 gap 间距。
+         */
         mainContentStyleUseGap() {
-            // #ifdef MP-WEIXIN
-            const wxMenuButtonBottom = this.wxMenuButtonBoudingInfo?.bottom ?? 0;
-            return {
-                marginTop: `${wxMenuButtonBottom + this.gap}px`
-            };
-            // #endif
-            // #ifndef MP-WEIXIN
-            return {
-                marginTop: `${this.windowNavAndStatusBarHeight}px`
-            };
-            // #endif
+            return getMainContentStyleUseGap(this.systemInfo, this.gap, this.defaultNavHeight);
         },
-        // 中心内容区域高度Style
+        /**
+         * 主内容区域样式。
+         */
         mainContentStyle() {
-            // #ifdef MP-WEIXIN
-            const wxMenuButtonBottom = this.wxMenuButtonBoudingInfo?.bottom ?? 0;
-            return {
-                marginTop: `${wxMenuButtonBottom}px`
-            };
-            // #endif
-            // #ifndef MP-WEIXIN
-            return {
-                marginTop: `${this.windowNavAndStatusBarHeight}px`
-            };
-            // #endif
+            return getMainContentStyle(this.systemInfo, this.defaultNavHeight);
         },
+        /**
+         * 计算“内容区域包含导航栏”时的顶部样式。
+         */
         mainContentContainNavStyle() {
-            // #ifdef MP-WEIXIN
-            const wxMenuButtonBottom = this.wxMenuButtonBoudingInfo?.bottom ?? 0;
-            return {
-                marginTop: `${this.windowNavHeight + wxMenuButtonBottom}px`
-            };
-            // #endif
-            // #ifndef MP-WEIXIN
-            return {
-                marginTop: `${this.windowNavAndStatusBarHeight}px`
-            };
-            // #endif
+            return getMainContentContainNavStyle(this.systemInfo, this.defaultNavHeight);
         },
-        // 兼容平台内容的top值
+        /**
+         * 兼容不同平台的主内容顶部数值。
+         */
         mainTop() {
-            // #ifdef MP-WEIXIN
-            const wxMenuButtonBottom = this.wxMenuButtonBoudingInfo?.bottom ?? 0;
-            return this.windowNavHeight + wxMenuButtonBottom;
-            // #endif
-            // #ifndef MP-WEIXIN
-            return this.windowNavAndStatusBarHeight;
-            // #endif
+            return getMainTop(this.systemInfo, this.defaultNavHeight);
         },
-        // 计算导航高度
+        /**
+         * 顶部可用导航高度。
+         *
+         * 当平台没有返回 `windowTop` 时，会回退到默认导航高度。
+         */
         windowTop() {
-            if (!this.systemInfo) return 0;
-            // 暂时修复vue3中隐藏系统导航栏后windowTop获取不正确的问题，具体bug详见https://ask.dcloud.net.cn/question/141634
-            // 感谢litangyu！！https://github.com/SmileZXLee/uni-z-paging/issues/25
-            // 2024-07-18 貌似已经修复了
-            // #ifdef VUE3 && H5
-            const pageHeadNode = document.getElementsByTagName("uni-page-head");
-            if (!pageHeadNode.length) return 0;
-            // #endif
-            return this.systemInfo.windowTop || 0;
+            return getWindowTop(this.systemInfo, this.defaultNavHeight);
         },
+        /**
+         * 状态栏高度。
+         */
         statusBarHeight(){
-            if (!this.systemInfo) return 0;
-            return this.systemInfo?.statusBarHeight || 0;
+            return getStatusBarHeight(this.systemInfo);
         },
-        // 导航栏高度
+        /**
+         * 导航栏高度。
+         *
+         * 这里与 `windowTop` 保持一致，保留该字段是为了兼容历史调用方。
+         */
         windowNavHeight() {
-            if (!this.systemInfo) return 0;
-            return this.windowTop == 0 ? this.defaultNavHeight : this.windowTop;
+            return this.windowTop;
         },
-        // 导航高度+状态栏高度
+        /**
+         * 导航栏高度 + 状态栏高度。
+         *
+         * 大多数页面标题区、首屏内容区都会直接使用这个值做顶部偏移。
+         */
         windowNavAndStatusBarHeight() {
-            if (!this.systemInfo) return 0;
-            return this.windowNavHeight + this.statusBarHeight;
+            return getWindowNavAndStatusBarHeight(this.systemInfo, this.defaultNavHeight);
         },
+        /**
+         * 与 hook 保持一致的顶部内容高度别名。
+         */
+        windowContentTop() {
+            return this.windowNavAndStatusBarHeight;
+        },
+        /**
+         * 顶部安全区高度。
+         */
         safeAreaTop() {
-            // 如果没有刘海的设备，safeAreaTop = statusBarHeight，否则 safeAreaTop > statusBarHeight
-            if (!this.systemInfo) return 0;
-            let safeAreaTop = 0;
-            safeAreaTop = this.systemInfo.safeAreaInsets.top || 0;
-            return safeAreaTop;
+            return getSafeAreaTop(this.systemInfo);
         },
+        /**
+         * 顶部安全区样式对象。
+         */
         safeAreaHeight(){
             return {
                 height: this.safeAreaTop + 'px'
             }
         },
+        /**
+         * 底部安全区高度。
+         *
+         * App / 微信小程序优先读系统安全区，其它平台从页面测量值兜底。
+         */
         safeAreaBottom() {
-            if (!this.systemInfo) return 0;
-            let safeAreaBottom = 0;
-            // #ifdef APP-PLUS || MP-WEIXIN
-            safeAreaBottom = this.systemInfo.safeAreaInsets.bottom || 0;
-            // #endif
-            // #ifndef APP-PLUS
-            safeAreaBottom = Math.max(this.cssSafeAreaInsetBottom, 0);
-            // #endif
-            return safeAreaBottom;
+            return getSafeAreaBottom(this.systemInfo, this.cssSafeAreaInsetBottom);
+        },
+        /**
+         * 可用窗口宽度。
+         */
+        windowWidth() {
+            return getWindowWidth(this.systemInfo);
         }
     },
     mounted() {
-        if (!this.systemInfo) this.systemInfo = uni.$jasper.getSystemInfoSync(); // 注意：uni.$jasper.getSystemInfoSync() 是 UniApp 的 API
-        //#ifdef MP-WEIXIN
-        console.log(`[安全区域top=${this.safeAreaTop},导航高度=${this.windowNavHeight},状态栏高度=${this.statusBarHeight},微信胶囊信息=${JSON.stringify(this.wxMenuButtonBoudingInfo)}]`)
-        //#endif
-        //#ifndef MP-WEIXIN
-        console.log(`[安全区域top=${this.safeAreaTop},导航高度=${this.windowNavHeight},状态栏高度=${this.statusBarHeight}]`)
-        //#endif
         this.$nextTick(() => {
             const query = uni.createSelectorQuery().in(this);
             query

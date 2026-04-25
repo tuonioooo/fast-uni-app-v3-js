@@ -19,15 +19,13 @@
 
 ## 环境变量
 
-当前项目使用 `.env` 系列文件管理环境变量：
+当前项目使用 `.env` 系列文件管理环境变量，具体参考`Vite`文档
 
-```text
-.env
-.env.development
-.env.production
-```
+- https://cn.vitejs.dev/guide/env-and-mode#env-variables
 
-只有 `VITE_` 前缀的变量会暴露给客户端代码。例如：
+`Vue2` 老版本参考：https://cli.vuejs.org/zh/guide/mode-and-env.html
+
+当前是Vue3，采用 `VITE_` 前缀的变量会暴露给客户端代码。例如：
 
 ```bash
 VITE_BASE_URL=http://127.0.0.1:9101

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <!--
+		官方教程：
+		https://uniapp.dcloud.net.cn/component/web-view.html#web-view
+		https://ask.dcloud.net.cn/article/35083
+	-->
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      var coverSupport =
+        'CSS' in window &&
+        typeof CSS.supports === 'function' &&
+        (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'));
+      document.write(
+        '<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' +
+          (coverSupport ? ', viewport-fit=cover' : '') +
+          '" />'
+      );
+    </script>
+    <!-- 注意工具类引入的顺序 -->
+    <script type="text/javascript" src="./js/utils/base-type.js"></script>
+    <script type="text/javascript" src="./js/utils/base-object.js"></script>
+    <script type="text/javascript" src="./js/utils/base-http-params.js"></script>
+  </head>
+  <body>
+    <!-- uni 的 SDK -->
+    <script type="text/javascript" src="./js/uni-webview-js@0.0.3/index.js"></script>
+    <script type="text/javascript">
+      // 待触发 `UniAppJSBridgeReady` 事件后，即可调用 uni 的 API。目前仅支持 navigateTo、navigateBack、switchTab、reLaunch、redirectTo、getEnv、postMessage
+      document.addEventListener('UniAppJSBridgeReady', function () {
+        uni.getEnv(function (res) {
+          console.log('当前环境：' + JSON.stringify(res));
+        });
+        var target = getQueryParams(window.location.href, true);
+        //console.log(JSON.stringify(target), "======")
+        var action = target.action;
+        var url = target.url;
+        switch (action) {
+          case 'navigateBack':
+            uni.navigateBack({
+              delta: 1,
+            });
+            break;
+          default:
+            uni[action]({
+              url,
+            });
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

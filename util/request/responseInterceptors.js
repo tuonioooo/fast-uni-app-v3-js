@@ -24,6 +24,8 @@ export default () => {
           const tokenExpiredKey = uni.$jasper.getValue('tokenExpiredKey');
           uni.removeStorageSync(tokenKey);
           uni.removeStorageSync(tokenExpiredKey);
+          uni.removeStorageSync('jasper-user-info');
+          uni.removeStorageSync('miliqk-accountId');
 
           const pages = getCurrentPages();
           const currentRoute = pages[pages.length - 1]?.route;

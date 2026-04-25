@@ -30,6 +30,12 @@
       "style": {
         "navigationBarTitleText": ""
       }
+    },
+    {
+      "path": "pages/component-test/component-test",
+      "style": {
+        "navigationBarTitleText": "组件测试"
+      }
     }
   ],
   "subPackages": [
@@ -77,6 +83,12 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/component-test/component-test",
+        "iconPath": "static/images/tabbar/default/home.png",
+        "selectedIconPath": "static/images/tabbar/red/home.png",
+        "text": "测试"
+      },
+      {
         "pagePath": "pages/user/user",
         "iconPath": "static/images/tabbar/default/user.png",
         "selectedIconPath": "static/images/tabbar/red/user.png",
@@ -86,7 +98,7 @@
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "fast-uni-app-v3-js",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   }

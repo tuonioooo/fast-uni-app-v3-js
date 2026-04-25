@@ -48,17 +48,24 @@ code 获取的过程
             }
 
             if (phoneNumber) {
-              //可以拿手机号去后台登录去获取token,
-              // 微信登录
+              // 可以拿手机号去后台登录去获取 token
+              // 登录成功后在当前页面内直接处理结果，不再通过全局事件总线广播
               let res = await weixinLoginApi({
                 phoneNumber,
                 loginType: 'weixinMobile'
               });
 
-              // 触发事件，将登录结果发送统一处理
-              uni.$emit('login-api-result-event', { res, phoneNumber, callback: ()=>{
-                  uni.navigateBack()
-                }});
+              if (res.code === 200) {
+                // 1. 写入本地登录状态
+                // 2. 执行登录成功跳转
+                // 3. 或返回上一页
+                uni.navigateBack();
+              } else {
+                uni.showToast({
+                  icon: 'none',
+                  title: res.msg || '登录失败'
+                });
+              }
             }
             
           } else if (e.detail.errno === 1400001) {
