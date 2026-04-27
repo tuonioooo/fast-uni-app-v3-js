@@ -1,114 +1,92 @@
-# Sass 新版语法使用 `@use` 和 `@forward` 替代 `@import`。
+# Sass / SCSS 使用指南
 
-以下是迁移方案：
+## 两种语法对比
 
-## **新语法对比**
+Sass 提供两种语法风格，可根据偏好选择：
 
-### **旧语法（已弃用）**
-```scss
-@import '@climblee/uv-ui/theme.scss';
+| 特性 | `.sass` | `.scss` |
+|------|---------|---------|
+| 语法风格 | 缩进式，无大括号和分号 | 类 CSS，有大括号和分号 |
+| 学习成本 | 对缩进敏感，易出错 | 接近原生 CSS，易上手 |
+| 社区支持 | 一般 | 广泛 ✅ |
+
+**推荐使用 `.scss`**，尤其在 uni-app 项目中，与官方组件和第三方库兼容性更好。
+
+```sass
+// .sass 风格
+$color: red
+body
+  color: $color
 ```
 
-### **新语法（推荐）**
 ```scss
-@use '@climblee/uv-ui/theme.scss' as *;
-```
-
-## **详细说明**
-
-### **方案1：使用 `@use` 并导入所有内容**
-```scss
-// 导入所有变量和 mixin，可以直接使用
-@use '@climblee/uv-ui/theme.scss' as *;
-
-// 现在可以直接使用 theme.scss 中的变量
-.container {
-  color: $primary-color;
-  @include flex-center;
+// .scss 风格
+$color: red;
+body {
+  color: $color;
 }
 ```
 
-### **方案2：使用命名空间**
+---
+
+## uni-app 中的 Sass
+
+uni-app 默认使用 **dart-sass** 作为编译器，同时支持 `.sass` 和 `.scss` 两种语法，Vite 会自动识别。
+
+---
+
+## `@use` 替代 `@import`
+
+Sass 新版已弃用 `@import`，推荐使用 `@use` / `@forward`。
+
+### 对比
+
+| 特性 | `@import` ❌ | `@use` ✅ |
+|------|------------|---------|
+| 作用域 | 全局，易污染 | 文件级，有命名空间隔离 |
+| 重复导入 | 会重复编译 | 只编译一次 |
+| 变量冲突 | 可能冲突 | 命名空间隔离 |
+| 状态 | 已弃用 | 推荐使用 |
+
+### 三种引入方式
+
 ```scss
-// 使用默认命名空间（文件名）
+// 方式一：导入所有内容（最常用）
+@use '@climblee/uv-ui/theme.scss' as *;
+.container { color: $primary-color; }
+
+// 方式二：使用默认命名空间
 @use '@climblee/uv-ui/theme.scss';
+.container { color: theme.$primary-color; }
 
-// 使用时需要加命名空间前缀
-.container {
-  color: theme.$primary-color;
-  @include theme.flex-center;
-}
-```
-
-### **方案3：自定义命名空间**
-```scss
-// 自定义命名空间为 'uv'
+// 方式三：自定义命名空间
 @use '@climblee/uv-ui/theme.scss' as uv;
-
-// 使用自定义命名空间
-.container {
-  color: uv.$primary-color;
-  @include uv.flex-center;
-}
+.container { color: uv.$primary-color; }
 ```
 
-## **完整迁移示例**
+### 迁移示例
 
-### **迁移前**
 ```scss
-// uni.scss
+// 迁移前
 @import '@climblee/uv-ui/theme.scss';
 @import './variables.scss';
-@import './mixins.scss';
 
-.page {
-  background: $bg-color;
-}
-```
-
-### **迁移后**
-```scss
-// uni.scss
+// 迁移后
 @use '@climblee/uv-ui/theme.scss' as *;
 @use './variables.scss' as *;
-@use './mixins.scss' as *;
-
-.page {
-  background: $bg-color;
-}
 ```
 
-## **uni-app 中的配置**
+---
 
-在 `vue.config.js` 或 `vite.config.js` 中配置（如果需要）：
+## uni-app 项目配置
 
-### **Vue CLI（vue.config.js）**
-```js
-module.exports = {
-  css: {
-    loaderOptions: {
-      scss: {
-        // 旧版
-        // additionalData: `@import "@climblee/uv-ui/theme.scss";`
-        
-        // 新版
-        additionalData: `@use "@climblee/uv-ui/theme.scss" as *;`
-      }
-    }
-  }
-}
-```
+### Vite（vite.config.js）
 
-### **Vite（vite.config.js）**
 ```js
 export default {
   css: {
     preprocessorOptions: {
       scss: {
-        // 旧版
-        // additionalData: `@import "@climblee/uv-ui/theme.scss";`
-        
-        // 新版
         additionalData: `@use "@climblee/uv-ui/theme.scss" as *;`
       }
     }
@@ -116,69 +94,51 @@ export default {
 }
 ```
 
-## **@use 与 @import 的关键区别**
+### Vue CLI（vue.config.js）
 
-| 特性 | @import | @use |
-|------|---------|------|
-| **作用域** | 全局作用域 | 文件作用域（需要命名空间） |
-| **重复导入** | 会重复编译 | 只编译一次 |
-| **变量覆盖** | 可能冲突 | 有命名空间隔离 |
-| **性能** | 较慢 | 更快 |
-| **推荐** | ❌ 已弃用 | ✅ 推荐使用 |
-
-## **常见问题解决**
-
-### **问题1：变量未定义**
-```scss
-// ❌ 错误
-@use '@climblee/uv-ui/theme.scss';
-.page {
-  color: $primary-color; // 找不到变量
-}
-
-// ✅ 正确方式1：使用命名空间
-@use '@climblee/uv-ui/theme.scss';
-.page {
-  color: theme.$primary-color;
-}
-
-// ✅ 正确方式2：使用 as *
-@use '@climblee/uv-ui/theme.scss' as *;
-.page {
-  color: $primary-color;
+```js
+module.exports = {
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@use "@climblee/uv-ui/theme.scss" as *;`
+      }
+    }
+  }
 }
 ```
 
-### **问题2：多个文件导入**
+---
+
+## 常见问题
+
+**变量找不到？** 忘记加 `as *` 时需要带命名空间前缀：
+
 ```scss
-// ✅ 每个文件都需要单独 @use
+// ❌ 报错
+@use '@climblee/uv-ui/theme.scss';
+color: $primary-color;
+
+// ✅ 加命名空间
+color: theme.$primary-color;
+
+// ✅ 或用 as *
+@use '@climblee/uv-ui/theme.scss' as *;
+color: $primary-color;
+```
+
+**多文件引入？** 每个文件需单独 `@use`：
+
+```scss
 @use '@climblee/uv-ui/theme.scss' as *;
 @use '@climblee/uv-ui/mixins.scss' as *;
-@use '@climblee/uv-ui/variables.scss' as *;
 ```
 
-## **自动迁移工具**
+---
 
-Sass 官方提供了自动迁移工具：
+## 自动迁移工具
 
 ```bash
-# 安装迁移工具
 npm install -g sass-migrator
-
-# 执行迁移
-sass-migrator module --migrate-deps <你的scss文件路径>
-
-# 示例
 sass-migrator module --migrate-deps ./src/**/*.scss
 ```
-
-## **推荐的最佳实践**
-
-```scss
-// uni.scss 或全局样式文件
-@use '@climblee/uv-ui/theme.scss' as *;
-
-// 这样在所有组件中都可以直接使用变量和 mixin
-```
-
-这样就完成了从 `@import` 到 `@use` 的迁移！✅
