@@ -5,7 +5,7 @@ default_workflow = [
   "frontend-engineer",
   "refactor-engineer",
   "tester",
-  "reporter",
+  "reporter"
 ]
 
 [skills]
