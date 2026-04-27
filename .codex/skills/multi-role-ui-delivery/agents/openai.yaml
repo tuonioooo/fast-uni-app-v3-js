@@ -1,0 +1,10 @@
+interface:
+  display_name: "Multi-Role UI Delivery"
+  short_description: "Coordinate prototype-to-feature delivery across analysis, implementation, cleanup, testing, and reporting"
+  icon_small: "./assets/multi-role-ui-delivery-small.svg"
+  icon_large: "./assets/multi-role-ui-delivery-small.svg"
+  brand_color: "#2563EB"
+  default_prompt: "Use $multi-role-ui-delivery to turn this prototype or partially implemented UI into a connected uni-app feature flow."
+
+policy:
+  allow_implicit_invocation: true

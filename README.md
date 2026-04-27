@@ -81,14 +81,18 @@ pnpm install
 
 ## 文档导航
 
-- [帮助文档](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/help.md)
-- [接口参数配置](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/api.md)
-- [Mock 文档](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/mock.md)
-- [MD5 / crypto-js 文档](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/md5.md)
-- [PostCSS 文档](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/postcss.md)
-- [Sass 迁移说明](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/sass.md)
-- [常见问题](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/problem.md)
-- [更新日志](/E:/dev_workspace/gitee/fast-template-org/fast-uni-app-v3-js/docs/changelog/changelog.md)
+- [帮助文档](./docs/help.md)
+- [接口参数配置](./docs/guides/api.md)
+- [Mock 文档](./docs/guides/mock.md)
+- [MD5 / crypto-js 文档](./docs/guides/md5.md)
+- [PostCSS 文档](./docs/guides/postcss.md)
+- [Sass 迁移说明](./docs/guides/sass.md)
+- [Resources Guide](./docs/guides/resources.md)
+- [Prompt Guide](./docs/guides/prototype-task-prompt-guide.md)
+- [Workflow Example](./docs/guides/codex-workflow-minimal-example.md)
+- [待补充项](./docs/pending.md)
+- [更新日志](./docs/changelog/changelog.md)
+- [Codex Agents 协作说明](./AGENTS.md)
 
 ## 说明
 

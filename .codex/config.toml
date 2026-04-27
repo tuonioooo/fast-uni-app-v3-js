@@ -5,11 +5,13 @@ default_workflow = [
   "frontend-engineer",
   "refactor-engineer",
   "tester",
+  "reporter",
 ]
 
 [skills]
 directory = ".codex/skills"
 preferred_for_ui_prototype = "ui-prototype-to-page"
+preferred_workflow = "multi-role-ui-delivery"
 
 [project]
 name = "fast-uni-app-v3-js"

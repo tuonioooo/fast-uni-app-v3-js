@@ -309,7 +309,7 @@ description: |
 - 优先补充 `mock/data/*`
 - 根据场景增加 `mock/mock.js` 或 `mock/index.js` 对应数据
 - 页面调用 API 层，不直接写死假数据
-- 图片资源优先使用 `https://picsum.photos/` 作为占位图来源，参考 `docs/resouces.md`
+- 图片资源优先使用 `https://picsum.photos/` 作为占位图来源，参考 `docs/guides/resources.md`
 - 需要稳定复现同一张图时，优先使用 `https://picsum.photos/seed/<stable-seed>/<width>/<height>` 形式，避免列表刷新后图片随机跳变
 - 原型落地阶段默认不要新增本地临时图片到页面目录，除非用户明确提供并要求使用固定素材
 
