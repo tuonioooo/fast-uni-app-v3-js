@@ -1,0 +1,17 @@
+[agents]
+directory = ".codex/agents"
+default_workflow = [
+  "requirements-analyst",
+  "frontend-engineer",
+  "refactor-engineer",
+  "tester",
+]
+
+[skills]
+directory = ".codex/skills"
+preferred_for_ui_prototype = "ui-prototype-to-page"
+
+[project]
+name = "fast-uni-app-v3-js"
+framework = "uni-app + Vue 3 + SCSS"
+notes = "UI 原型改造优先复用现有组件、请求封装、mock 和页面结构"

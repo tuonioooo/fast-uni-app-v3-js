@@ -93,6 +93,45 @@ const staticHost = import.meta.env.VITE_STATIC_HOST;
 - [常见问题](problem.md)
 - [Husky + Commitlint + lint-staged 配置指南](./husky.md)
 - [更新日志](changelog/changelog.md)
+- [静态资源](./resouces.md)
+
+## jsconfig 一些编译项说明
+
+### moduleResolution
+
+`moduleResolution` 告诉 TypeScript/编译器**如何查找和解析模块文件**，简单说就是"当你写 `import xxx from 'yyy'` 时，去哪里找这个 `yyy`"。
+
+**举个例子：**
+
+```js
+import { queryActivityList } from '@/api/activity'
+import dayjs from 'dayjs'
+```
+
+编译器需要知道：
+- `@/api/activity` 对应磁盘上哪个文件？
+- `dayjs` 去 `node_modules` 哪个位置找？
+
+不同的 `moduleResolution` 策略查找规则不同：
+
+| 值 | 查找方式 |
+|---|---|
+| `node` | 模拟 Node.js CommonJS 的查找规则（旧版，已废弃） |
+| `bundler` | 模拟 Vite/Webpack 打包工具的查找规则（推荐） |
+| `node16` | 模拟 Node.js 16 ESM 的查找规则 |
+
+**`bundler` 和 `node` 的主要区别：**
+
+```js
+// node 模式下必须写完整扩展名
+import { foo } from './utils.js'
+
+// bundler 模式下可以省略扩展名，打包工具会自动补全
+import { foo } from './utils'      // ✅ 直接找 utils.js / utils.ts / utils/index.js
+import { foo } from '@/utils'      // ✅ 支持路径别名
+```
+
+所以对于 uni-app 这种基于打包工具的项目，用 `bundler` 最符合实际运行环境。
 
 ## 其它说明
 

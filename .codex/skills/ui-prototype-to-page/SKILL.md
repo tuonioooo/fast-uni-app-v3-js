@@ -309,6 +309,9 @@ description: |
 - 优先补充 `mock/data/*`
 - 根据场景增加 `mock/mock.js` 或 `mock/index.js` 对应数据
 - 页面调用 API 层，不直接写死假数据
+- 图片资源优先使用 `https://picsum.photos/` 作为占位图来源，参考 `docs/resouces.md`
+- 需要稳定复现同一张图时，优先使用 `https://picsum.photos/seed/<stable-seed>/<width>/<height>` 形式，避免列表刷新后图片随机跳变
+- 原型落地阶段默认不要新增本地临时图片到页面目录，除非用户明确提供并要求使用固定素材
 
 ### 7.3 登录相关交互要与现有登录链路兼容
 
@@ -417,6 +420,7 @@ description: |
 - [ ] 是否补充了 `pages.json` 片段
 - [ ] 是否把接口放到了 `api/*`
 - [ ] 是否优先接入现有 `mock/*`
+- [ ] mock 图片是否优先使用 `https://picsum.photos/`，并在列表场景使用稳定 `seed`
 - [ ] 是否避免重复实现登录态
 - [ ] 是否考虑了小程序/H5 多端兼容
 

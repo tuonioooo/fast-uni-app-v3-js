@@ -2,7 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
-    }
-  }
+      "@/*": ["./*"]
+    },
+    "types": ["@dcloudio/types", "@uni-helper/uni-app-types"],
+    "target": "ES6",
+    "module": "commonjs",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "preserve"
+  },
+  "include": ["**/*.js", "**/*.vue", "**/*.d.ts"],
+  "exclude": ["node_modules", "unpackage", "dist"]
 }
