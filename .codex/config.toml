@@ -1,12 +1,6 @@
 [agents]
-directory = ".codex/agents"
-default_workflow = [
-  "requirements-analyst",
-  "frontend-engineer",
-  "refactor-engineer",
-  "tester",
-  "reporter"
-]
+max_threads = 6
+max_depth = 1
 
 [skills]
 directory = ".codex/skills"

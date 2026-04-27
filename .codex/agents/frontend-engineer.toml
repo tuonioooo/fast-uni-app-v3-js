@@ -28,5 +28,4 @@ developer_instructions = """
 - 未完成项或风险
 """
 
-sandbox = "workspace-write"
-preferred_handoff_to = ["refactor-engineer", "tester"]
+sandbox_mode = "workspace-write"

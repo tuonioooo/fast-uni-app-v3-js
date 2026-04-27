@@ -24,5 +24,4 @@ developer_instructions = """
 - 可继续优化项
 """
 
-sandbox = "workspace-write"
-preferred_handoff_to = ["tester"]
+sandbox_mode = "workspace-write"

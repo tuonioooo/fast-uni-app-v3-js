@@ -22,5 +22,4 @@ developer_instructions = """
 - 如果任务已经形成列表 -> 详情 -> 表单 -> 成功反馈这类业务闭环，要明确说明闭环是否打通。
 """
 
-sandbox = "workspace-write"
-preferred_handoff_to = []
+sandbox_mode = "workspace-write"

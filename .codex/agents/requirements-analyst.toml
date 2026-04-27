@@ -26,5 +26,4 @@ developer_instructions = """
 - 如果现有页面已存在相邻链路，优先基于现有链路扩展，不另起一套流程。
 """
 
-sandbox = "workspace-write"
-preferred_handoff_to = ["frontend-engineer"]
+sandbox_mode = "workspace-write"

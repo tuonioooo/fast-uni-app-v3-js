@@ -21,5 +21,4 @@ developer_instructions = """
 - 如果发现未引用资源、遗留原型页面、未注册路由、未接白名单，应明确指出。
 """
 
-sandbox = "workspace-write"
-preferred_handoff_to = ["reporter"]
+sandbox_mode = "workspace-write"
